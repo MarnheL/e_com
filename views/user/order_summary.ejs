@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/order-summ.css">
+<%- include('include/head') %>
+    <title>Order Summary</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="page-container1">
+        <%- include('include/nav') %>
+        <!-- Body container -->
+        <div class="qo-summary-container">
+            <form action="/user/order-summary/<%- item.id %>" method="POST" enctype="multipart/form-data">
+                <div class="info-1">
+                    <div class="qo-order-information">
+                        <h2>Order Information</h2>
+                        <p><%- user.firstname %> <%- user.middlename %> <%- user.lastname %></p>
+                        <p> <%- user.contact_number %></p>
+                        <p> <%- user.complete_address %></p>
+                  </div>
+                    <div class="qo-mop">
+                        <div>
+                            <h2>Mode of Payment</h2>
+                        </div>
+                        <div>
+                            <input type="radio" id="COD" name="payment_method" onclick="cod()" value="COD" required>
+                            <label for="COD">Cash on delivery</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="GCash" name="payment_method" onclick="gGash()" id="gcash" value="GCash" required>
+                            <label for="GCASH">Gcash</label>
+                        </div>
+                        <input type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
+                    </div>
+                </div>
+                <div class="info-2">
+                    <div class="cont-1">
+                        <table class="table1" >
+                            <thead>
+                                <tr class="col-0">
+                                    <th class="headerbg">Product</th>
+                                    <th class="headerbg">Quantity</th>
+                                    <th class="headerbg">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="col-1">
+                                    <td>
+                                        <div>
+                                            <img src="/<%- item.img_name %>" alt="" style="width: 100px; height: 100px;">
+                                        </div>
+                                        <div class="prodname-container">
+                                            <p class="aw"><%- item.product_name %></p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="quantity-container">
+                                            <button  type="button" onclick="decrement()"><i class="fa-solid fa-minus fa-lg"></i></button>
+                                            <input type="number" id="quantity" name="quantity" required value="1" min="1" max="<%- item.product_stock %>" readonly>
+                                            <button type="button" onclick="increment()"><i class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input class="price" type="number" id="product_price" value="<%- item.product_price %>"  disabled="disabled">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <div class="col-2">
+                <table >
+                    <tr class="tr2">
+                        <td class="total">Shipping Fee</td>
+                        <td > <input class="price" type="number" value="<%- shipping_fee %>" readonly></td>
+                    </tr>
+                    <tr class="tr2">
+                        <td class="total">Total </td>
+                        <td ><input class="price" type="number" id="total" value="" readonly></td>
+                    </tr>
+                </table> 
+            </div>
+                <div class="btns">
+                    <button onclick="myFunction()" class="orderbtn">Place Order</button>
+                    <input class="back" type="button" value="Back" onclick="history.back()">
+                </div>
+            </form>
+        </div>
+         <!-- Body container -->
+    </div>
+    <!-- end or products main container -->
+
+    <!--Adress-->
+    <script>
+        let quantity = parseInt(document.getElementById('quantity').value)
+        let product_price = parseInt(document.getElementById('product_price').value)
+        let shipping_fee = '<%- shipping_fee %>'
+        document.getElementById('total').value = (quantity * product_price) + parseInt(shipping_fee)
+        function increment(){
+            if(quantity < '<%- item.product_stock %>'){
+                document.getElementById('product_price').value = product_price * quantity
+                quantity++
+                document.getElementById('quantity').value = quantity
+                document.getElementById('total').value = (document.getElementById('product_price').value = product_price * quantity) + parseInt(shipping_fee)
+            }else{
+                document.getElementById('add').disabled = true
+            }
+        }
+        function decrement(){
+            document.getElementById('product_price').value = product_price * quantity
+            if(quantity > 1){
+                quantity--
+            }
+            document.getElementById('quantity').value = quantity
+            document.getElementById('total').value = (document.getElementById('product_price').value = product_price * quantity) + parseInt(shipping_fee)
+            document.getElementById('add').disabled = false
+        }
+    </script>
+    <!--Adress-->
+
+    <!-- Shipping fee -->
+    <script>
+        function cod(){
+            document.getElementById('image').style.display = 'none'
+            document.getElementById('image').required = false
+        }
+        function gGash(){
+            document.getElementById('image').style.display = 'block'
+            document.getElementById('image').required = true
+        }
+    </script>
+    <!-- Shipping fee -->
+
+   <%- include('include/footer') %>
+   <script src="/js/script.js"></script>
+</body>
+</html>

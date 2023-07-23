@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/cart.css">
+    <%- include('include/head') %>
+    <title>Cart</title>
+</head>
+<body>
+    <div class="page-container1">
+        <%- include('include/nav') %> 
+        <div class="try">
+            <div class="cart-content">
+                <h1>Your Cart</h1>
+                <table>
+                    <!-- <thead>
+                    </thead> -->
+                    <tbody>
+                        <% let sub_total = 0 %>
+                        <% let stockCounter = 0 %>
+                        <% if(newcart != '' && newcart != null) { %>
+                        <% newcart.forEach(item => { %>
+                            <tr class="col-2">
+                                <td class="table-data-image"><img src="<%- item.product_image %>" alt=""  ></td>
+                                <td class="table-data-name"><%- item.product_name %></th> 
+                                <td class="table-data-amount"><%- item.product_price %></th>
+                                <td  class="table-data-quantity">
+                                    <div class="quantity-container">
+                                        <form action="/cart/<%- item.product_id %>/deduc" method="POST">
+                                            <button class="negative"><i class="fa-solid fa-minus"></i></button>
+                                        </form>
+                                        <p class="result"><%- item.product_quantity %>
+                                        <% if(item.product_stats != '') { %>
+                                            <form>
+                                                <button class="" disabled><i class="fa-solid fa-plus"></i></button>
+                                            </form>
+                                            <% stockCounter++ %>
+                                        <% }else{ %>
+                                            <form action="/cart/<%- item.product_id %>/add" method="POST">
+                                                <button class="positive"><i class="fa-solid fa-plus"></i></button>
+                                            </form>
+                                        <% } %>
+                                    </div>
+                                    <div>
+                                        <span style="color: red;"><%- item.product_stats %></span>
+                                    </div>
+                                </td>
+                                <td class="table-data-action">
+                                    <a class="remove-link" href="/cart/<%- item.product_id %>/remove"><i class="fa-solid fa-trash fa-2x"></i></a>
+                                </td>
+                            </tr>
+                            <% sub_total = sub_total + item.product_price %>
+                        <% }) %>
+                        <tr class="subtotal">
+                            <td></td>
+                            <td>Subtotal</td>
+                            <td class="total"><%- sub_total %></td>
+                        </tr>
+                        <tr  class="shippingfee">
+                            <td></td>
+                           <td>Shipping Fee</td>
+                           <td class="total"><%- shipping_fee %></td>
+                       </tr>
+                       <tr class="total-amount">
+                            <td></td>
+                            <td>Total Amount</td>
+                            <td  class="total"><%- sub_total + shipping_fee %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+                <% if(newcart != null && newcart != '') { %>
+                    <div class="cart-data-summary">
+                        <p class="summary">Delivery Details</p>
+                        <div class="name">
+                            <label class="label-title" for="name">Name</label>
+                            <input class="name-box" type="text" name="name" id="name" value="<%- guess.firstname %> <%- guess.middlename %> <%- guess.lastname %>" required readonly>
+                            <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                        </div>
+                        <div  class="address">
+                            <label class="label-title" for="address">Address</label>
+                            <input class="address-box" type="text" name="address" id="address" value="<%- guess.house_no %> <%- guess.zip_code %>  <%- guess.barangay %> <%- guess.city %> <%- guess.province %>" required readonly>
+                            <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                        </div>
+                        <div class="contact">
+                            <label class="label-title" for="contact_number">Contact Number</label>
+                            <input type="text" name="contact_number" id="contact_number" value="<%- guess.contact_number %>" readonly>
+                            <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                        </div>
+                        <form action="/cart/place-order" method="POST" enctype="multipart/form-data">
+                            <div  class="gcash"> 
+                                <label class="label-title" for="">GCash</label>
+                                <input type="radio" value="GCash" name="payment_method" onclick="gGash()" id="gcash" required>
+                            </div>
+                            <input class="file" type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
+                            <% if(stockCounter > 0) { %>
+                                <button class="placeorder-btn" disabled style="background-color: antiquewhite;">Place order</button>
+                            <% }else { %>
+                                <button class="placeorder-btn">Place order</button>
+                            <% } %>
+                            <!-- <button>Place Order</button> -->
+                        </form>
+                    </div>
+                <% }else{ %>
+                    <div  class="empty-products">
+                        <p class="title">Your cart is empty</p>
+                        <p class="title">go to <a href="/product"> products</a></p>
+                    </div>
+                <% } %>
+            
+        </div>
+    </div>
+    <!-- Body container -->
+    <%- include('include/footer') %>
+    <script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/cart.css">
+<%- include('include/head') %>
+    <title>Cart</title>
+</head>
+<body>
+    <!-- Body container -->
+    <div class="page-container1">
+        <%- include('include/nav') %> 
+        <div class="try">
+            <div class="cart-content">
+                <h1>Your Cart</h1>
+                <table>
+                    <thead>
+                    <tbody>
+                        <% let sub_total = 0 %>
+                        <% let stockCounter = 0 %>
+                        <% if(newcart != '' && newcart != null) { %>
+                        <% newcart.forEach(data => { %>
+                        <tr class="col-2">
+                            <td class="table-data-image"><img src="<%- data.product_image %>" alt=""  style="width: 100px; height: 100px;"></td>
+                            <td class="table-data-name"><%- data.product_name %></td>
+                            <td class="table-data-amount"><%- data.product_price %></td>
+                            <td class="table-data-quantity">
+                                <div class="quantity-container">
+                                    <form action="/user/cart/<%- data.product_id %>/deduc" method="POST">
+                                        <button class="negative"><i class="fa-solid fa-minus"></i></button>
+                                    </form>
+                                    <p class="result"><%- data.product_quantity %>
+                                    <!-- <input type="number" class="result" value="<%- data.product_quantity %>" id="change_quantity_<%- data.product_id %>" name="quantity"> -->
+                                    <% if(data.product_stats != '') { %>
+                                        <button class="positive" disabled><i class="fa-solid fa-plus"></i></button>
+                                        <% stockCounter++ %>
+                                    <% }else{ %>
+                                        <form action="/user/cart/<%- data.product_id %>/add" method="POST">
+                                            <button class="positive"><i class="fa-solid fa-plus"></i></button>
+                                        </form>
+                                    <% } %>
+                                    <script>
+                                        let input = document.getElementById('change_quantity_<%- data.product_id %>');
+                                        let url = 'http://localhost:5000/user/api/cart/<%- data.product_id %>'
+                                        input.addEventListener('input', async(e) => {
+                                            let value = parseInt(input.value);
+                                            e.preventDefault()
+                                            const res = await fetch(url, {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({ quantity: value })
+                                            })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                console.log('Data updated:', data );
+                                                console.log('Data updated:', data.message );
+                                                console.log('Data updated:', data.quantity );
+                                                // input.innerHTML = JSON.stringify(data.quantity);
+                                            })
+                                            .catch(error => {
+                                                console.error('Error:', error);
+                                            });
+                                            location.reload();
+                                        }); 
+                                    </script>
+                                </div>
+                                <div>
+                                    <span style="color: red;"><%- data.product_stats %></span>
+                                </div>
+                            </td>      
+                            <td class="table-data-action">
+                                <a class="remove-link" href="/user/cart/<%- data.product_id %>/remove"><i class="fa-solid fa-trash fa-2x"></i></a>
+                            </td>
+                        </tr>
+                            <% sub_total = sub_total + data.product_price %>
+                        <% }) %>
+                        <tr class="subtotal">
+                            <td></td>
+                            <td>Subtotal</td>
+                            <td class="total"><%- sub_total %></td>
+                        </tr>
+                         <tr  class="shippingfee">
+                             <td></td>
+                            <td>Shipping Fee</td>
+                            <td class="total"><%- shipping_fee %></td>
+                        </tr>
+                        <tr class="total-amount">
+                            <td></td>
+                            <td>Total Amount</td>
+                            <td  class="total"><%- sub_total + shipping_fee %></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    </thead>
+                </table>
+            </div>
+            <% if(newcart != null && newcart != '') { %>
+            <div class="cart-data-summary">
+                <p class="summary">Delivery Details</p>
+                    
+                    <div  class="address">
+                        <label for="address">Address</label>
+                        <input class="address-box" type="text" name="address" id="address" value="<%- user.house_no %> <%- user.zip_code %>  <%- user.barangay %> <%- user.city %> <%- user.province %>" required readonly>
+                        <a href="/user/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                    </div>
+                    <div class="contact">
+                        <label for="contact_number">Contact Number</label>
+                        <input type="text" name="contact_number" id="contact_number" value="<%- user.contact_number %>" readonly>
+                        <a href="/user/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                    </div>
+                    <form action="/user/cart/place-order" method="POST" enctype="multipart/form-data">
+                        <div>
+                            <div>
+                                <!-- <label for="">Shipping Fee</label> -->
+                                <input type="number" value="<%- shipping_fee %>" hidden>
+                            </div>
+                            <!-- <label for="payment_method">Payment Method</label> -->
+                            <div class="cod">
+                                <label for="">Cash on delivery</label>
+                                <input type="radio" value="COD" name="payment_method" onclick="cod()" required>
+                            </div>
+                            <div  class="gcash"> 
+                                <label for="">GCash</label>
+                                <input type="radio" value="GCash" name="payment_method" onclick="gGash()" id="gcash" required>
+                            </div>
+                            <input class="file" type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
+                        </div>
+                        <% if(stockCounter > 0) { %>
+                            <button class="placeorder-btn" disabled style="background-color: antiquewhite;">Place order</button>
+                        <% }else { %>
+                            <button class="placeorder-btn">Place order</button>
+                        <% } %>
+                    </form>
+            </div>
+            <% }else{ %>
+                <div  class="empty-products">
+                    <p class="title">Your cart is empty</p>
+                    <p class="title">go to <a href="/user/product"> products</a></p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <!-- Body container -->
+    <%- include('include/footer') %>
+    <script src="/js/script.js"></script>
+</body>
+</html>

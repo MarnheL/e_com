@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/user-history.css" />
+    <%- include('include/head') %>
+    <title>History</title>
+  </head>
+  <body>
+    <!-- Main container -->
+    <div class="page-container">
+      <%- include('include/nav') %>
+      <!-- Body container -->
+      <div class="body-content">
+        <div class="column">
+          <div class="btn-container">
+            <a class="myaccount" href="account">Account</a>
+            <a class="orders" href="order">Orders</a>
+            <a class="history active" href="history">History</a>
+          </div>
+        </div>
+        <!-- table -->
+        <div class="column-1">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Date</th>
+              </thead>
+              <tbody>
+                <% order.forEach(data => { %>
+                <tr>
+                  <td class="td-product" id="item-name">
+                    <div>
+                      <% data.items.forEach(item => { %>
+                      <p class="table-data2"><%- item.name %></p>
+                      <% }) %>
+                    </div>
+                  </td>
+
+                  <td class="td-quantity">
+                    <div>
+                      <% data.items.forEach(item => { %>
+                      <p class="table-data2"><%- item.quantity %></p>
+                      <% }) %>
+                    </div>
+                  </td>
+
+                  <td>
+                    <p class="table-data2"><%- data.total_amount %></p>
+                  </td>
+
+                  <td class="td-status">
+                    <p class="table-data2"><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()); %>
+                     <% if(data.status == 'cancelled') { %>
+                      <span class="">- <%- data.reason %></span>
+                    <% } %></p>
+                   
+                  </td>
+                  <td id="item-date">
+                    <div>
+                      <p class="table-data2">
+                        <%- data.date_ordered.toISOString().slice(0,10) %>
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+            <% if(order == false) { %>
+            <p class="no-order">No order history</p>
+            <% } %>
+          </div>
+        </div>
+        <!-- Table -->
+      </div>
+      <!-- Body container -->
+    </div>
+    <!-- Body container -->
+    <%- include('include/footer') %>
+  </body>
+</html>

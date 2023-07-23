@@ -1,0 +1,163 @@
+
+<%- include('include/head') %>
+    <title>Inventory</title>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <%- include('include/sidebar') %>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3  text-dark" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Inventory</h2>
+                </div>
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2 text-white"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div> -->
+            </nav>
+            <!-- BODY CONTENT -->
+            <div>
+                <a href="/admin/inventory/add-product"> <button type="add" class="btn btn-success ms-3" name="add_product"><i class="bi bi-plus-lg"></i> Add Products</button></a>
+                <a href="/admin/archive" class="btn btn-dark "><i class="bi bi-archive-fill pe-1 fa-2xs"></i>Archive</a>
+           </div>
+            <div class="navbar-nav navbar-dark position-relative mt-5">
+                <table class="table table-hover bg-white rounded text-center">   
+                    <thead class="table-dark">
+                        <tr >
+                            <th scope="col">ID</th>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Stocks</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% renderProduct.forEach(data => { %>
+                            <tr>
+                                <td id="date" class="date"><%- data.id %></td>
+                                <td><img src="<%- data.img_name %>" alt="" style="width: 50px; height: 50px;"></td>
+                                <td><%- data.product_name %></td>
+                                <td><%- data.product_stock %></td>
+                                <td>
+                                    <!-- <a id="view"  class="btn btn-secondary" href="/admin/inventory/<%- data.id %>/view-product">View</a> -->
+                                    <a id="view"  class="btn btn-secondary" href="/admin/inventory/<%- data.id %>/archive">Archive</a>
+                                    <a   class="btn btn-success" href="/admin/inventory/<%- data.id %>/update-product">Update</a>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#<%- data.id %>1">
+                                        Remove
+                                    </button>
+  
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="<%- data.id %>1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Remove Stocks</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/admin/inventory/<%- data.id %>/remove-item" method="POST">
+                                                        <div class="mb-3">
+                                                            <label for="Reason" class="col-form-label">Reason:</label>
+                                                                <div>
+                                                                    <input class="form-check-input" name="reason" type="radio" value="Damaged" id="flexCheckDefault" required>
+                                                                    <label class="form-check-label" for="flexCheckDefault">Damaged</label>
+                                                                    <input class="form-check-input" name="reason" type="radio" value="Expired" id="flexCheckDefault" required>
+                                                                    <label class="form-check-label" for="flexCheckDefault">Expired</label>
+                                                                    <input class="form-check-input" name="reason" type="radio" value="Mistyped" id="flexCheckDefault" required>
+                                                                    <label class="form-check-label" for="flexCheckDefault">Mistyped</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="stock_number" class="col-form-label">Number of stock to be removed:</label>
+                                                            <input type="number" class="form-control" id="stock_number" name="quantity" required max="<%- data.product_stock %>">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="password" class="col-form-label">Password:</label>
+                                                            <input type="password" class="form-control" id="password" name="password" required>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                            
+                                                </div>
+                                                <!--  -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#<%- data.id %>2">
+                                        Sell
+                                    </button>
+        
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="<%- data.id %>2" tabindex="-1" aria-labelledby="exampleModalsLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalsLabel">Walk Ins</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/admin/inventory/<%- data.id %>/sell-item" method="POST">
+                                                        <div class="mb-3">
+                                                            <label for="Reason" class="col-form-label">Reason:</label>
+                                                                <div>
+                                                                    <input class="form-check-input" type="checkbox" value="Walk In" name="reason" checked id="flexCheckDefault" required>
+                                                                    <label class="form-check-label" for="flexCheckDefault">Walk In</label>
+                                                                </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="stock_number" class="col-form-label">Number of purchased:</label>
+                                                            <input type="number" class="form-control" id="stock_number" name="quantity" max="<%- data.product_stock %>" min="1" required>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <!-- <a href="/admin/inventory/<%- data.id %>/sell-item"><button type="button" class="btn btn-primary">Save changes</button></a> -->
+                                                            <button class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <!--  -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <!-- BODY CONTENT -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

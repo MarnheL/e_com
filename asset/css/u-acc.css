@@ -1,0 +1,46 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  width: 100%;
+
+}
+
+.page-container{
+  height: 100%;
+  min-height: 100vh;
+}
+
+.body-content{
+  min-height: 100vh;
+}
+
+.column {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 100vh; /* Should be removed. Only for demonstration */
+  
+}
+
+.column-1{
+    border: 10px solid black;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+
+.name label{
+    font-size: 1em;
+    font-weight: 17px;
+   
+}
+
+.column-1 input{
+    font-size: 1em;
+}

@@ -1,0 +1,247 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+  
+    scroll-behavior: smooth;
+
+    background: #00B4DB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    margin:0;
+    width:100vw;
+    height:100vh;
+    overflow:auto;
+}
+/* .page-container{
+    height: 100%;
+    min-height: 100vh;
+    
+} */
+.body-content{
+  
+  
+   
+   
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    
+    
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height:100%;
+    min-height: 100vh;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+  
+}
+
+.update-account{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    font-size: 16px;
+    
+    
+}
+.personal-info{
+    margin-bottom: 20px;
+   
+    
+}
+.title {
+    text-align: center;
+    background: rgba(0,0,0,.5);
+    padding: 5px;
+    color: #fff;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.personal-info label{
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 20px;
+    width: 20%;
+    display: inline-block;
+    margin-top: 20px ;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+
+ 
+}
+.personal-info input{
+    font-size: 1rem;
+    padding: 5px 5px;
+    width: 55%;
+    border-radius: 5px;
+}
+
+.contact-info label{
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 20px;
+    width: 20%;
+    display: inline-block;
+    margin-top: 20px ;
+    margin-bottom: 10px;
+
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+
+}
+.contact-info input{
+    font-size: 1rem;
+    padding: 5px 5px;
+    width: 55%;
+    border-radius: 5px;
+}
+.address{
+    margin: 20px 0;
+}
+.address label{
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 20px;
+    width: 15%;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+    
+  
+    
+}
+.address select{
+    font-size: 1rem;
+    padding: 5px 5px;
+    width: 60%;
+    border-radius: 5px;
+}
+.address input{
+    font-size: 1rem;
+    padding: 5px 5px;
+    width: 60%;
+    border-radius: 5px;
+}
+.btns{
+
+    text-align: center;
+    
+}
+.btns button{
+    padding: 5px 20px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0,0,0,.5);
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+}
+.backbtn{
+ 
+    padding: 5px 20px;
+    border:none;
+    border-radius: 5px;
+    background-color: #9b0a0a;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+}
+@media (max-width: 1000px) {
+    .body-content{
+        padding: 5px 0;
+        width: 50%;
+    }
+
+
+    .update-account h1{
+        font-size: 1rem;
+    }
+    .title{
+        font-size: 0.8rem;
+    }
+    
+    .personal-info label{
+        font-size: 0.8rem;
+       
+       display: block;
+       width: 100%;
+       margin-top: 10px;
+       margin-bottom: 0;
+       margin-left: 10px;
+    }
+    .personal-info input{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 90%;
+    }
+    .contact-info label{
+        font-size: 0.8rem;
+       
+       display: block;
+       width: 100%;
+       margin-top: 3px;
+       margin-bottom: 0;
+       margin-left: 10px;
+    }
+    .contact-info input{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 90%;
+        margin-bottom: 0;
+    }
+    .address label{
+        font-size: 0.8rem;
+       
+       display: block;
+       width: 100%;
+       margin-top:5px;
+       margin-bottom: 0;
+       margin-left: 10px;
+    }
+    .address input{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 90%;
+        
+    }
+    .address select{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 90%;
+        
+    }
+    .btns button{
+        font-size: 0.8rem;
+    }
+    .btns input{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 720px) {
+    .body-content{
+        width:70%;
+    }
+}
+
+@media (max-width: 480px) {
+    .body-content{
+        width:100%;
+    }
+}

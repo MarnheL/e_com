@@ -1,0 +1,278 @@
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+html{
+    width: 100%;
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+ 
+   
+}
+.products-page-container{
+    height: 100%;
+    min-height: 100vh;
+    
+}
+.products-content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    row-gap: 30px;
+    margin: 100px auto;
+}
+
+ 
+
+.category{
+    margin-top: 30px;
+    align-items: top;
+    position: absolute;
+    left: 80%;
+  
+}
+.options{
+    font-size: small;
+   }
+select{
+    font-size: 13px;
+    padding: 5px 15px;
+}
+.sort{
+    padding: 5px 10px; 
+    float: right;
+    margin-right: 5%;
+    margin-top: 1%;
+}
+.sort-button{
+    padding: 5px 20px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+.image-1{
+    max-width: 100%;
+    width: 150px;
+    margin: 0 20px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+
+
+
+  
+    
+}
+/* to set the image in same size */
+div img{
+    object-fit: contain;
+    -webkit-object-fit: contain;
+    -moz-object-fit: contain;
+    -o-object-fit: contain;
+}
+.products1-container{
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+
+}
+.description-1{
+    width: 40%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+}
+.btns1-container{
+    display: flex;
+    flex-wrap: wrap; 
+    margin-bottom: 100px;
+    justify-content: center;
+    width: 100%;
+    
+
+}
+.buy-now-btn1{
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 3px;
+    font-family: 'Poppins', sans-serif;
+   
+}
+.add-to-cart-btn1{
+    padding: 5px 3px;
+    border: 1px solid;
+    border-color: #000;
+    border-radius: 5px;
+    background-color: #ffff;
+    color: #000;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.fa-sharp{
+    margin-right: 3px;
+}
+.to-top{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: #4267B2;
+    color: #fff;
+    border-radius: 50px;
+    border-radius: 1px solid #fff;
+    cursor: pointer;
+    transition: all 0.5s ease 0s;
+
+}
+
+
+
+@media (max-width: 1000px) {
+.sort option{ 
+    font-size: 0.6rem;
+}  
+.sort-button{
+   font-size: 0.8rem;
+}
+.products-content{ 
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 100%;
+}
+.btns1-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.description-1{
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+}
+.image-1{
+    width: 100px;
+    height: 100px;
+}
+.btns1-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btns1-container button{
+    margin-bottom: 3px;
+}
+.buy-now-btn1{
+    font-size: 0.8rem;
+}
+.add-to-cart-btn1{
+        font-size: 0.8rem;
+}
+    
+
+
+}
+
+@media (max-width: 480px) {
+    .btns1-container{
+        /* border: 1px solid black; */
+        display: flex;
+      
+        align-self: center;
+    }
+    .buy-now-btn1{
+        margin-bottom: 5px;
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+  }
+  
+  .modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-body {
+    padding: 10px 15px;
+  }
+  
+  #overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+  }
+  
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+/* Modal */
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .button {
+    margin: 5px;
+  }
+
+ 

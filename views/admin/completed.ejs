@@ -1,0 +1,155 @@
+
+<%- include('include/head') %>
+  <title>History-Completed</title>
+</head>
+
+
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <%- include('include/sidebar') %>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3  text-dark" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Order Status</h2>
+                </div>
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2 text-white"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div> -->
+            </nav>
+            <!-- BODY CONTENTs -->
+            <!-- BUTTONS TO CLICK TO GO TO DIFFERENT PAGES -->
+            <div class="container text-center">
+                <div class="btn-group btn-group-justified">
+                  <a href="/admin/order-status" class="btn btn-dark">Pending Orders</a>
+                  <!-- <a href="/admin/approve-order" class="btn btn-dark">Approved Orders</a> -->
+                  <a href="/admin/ongoing-order" class="btn btn-dark">Preparing Orders</a>
+                  <a href="/admin/out-for-delivery" class="btn btn-dark">Out for delivery</a>
+                  <a href="/admin/completed-order" class="btn btn-dark">Completed Orders</a>
+                  <div class="btn-group btn-group-justified">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        History</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="/admin/completed-order/history">Completed</a></li>
+                      <li><a class="dropdown-item" href="/admin/cancelled-order">Cancelled</a></li>
+                    </ul>
+                  </div>
+                </div>
+              <div class="fs-4 mb-5"></div>
+            </div>
+              <!-- TABLE WITH USERS DATA -->
+              <table class="table table-hover text-center bg-white">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact#</th>
+                        <th scope="col">Order</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">MOP</th>
+                        <th scope="col">SubTotal</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Type</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% order.forEach(info => { %>
+                            <tr>
+                              <td id="name"><%- info.fullname %></td>
+                              <td id="address">
+                                <%- info.house_no %> <%- info.zip_code %> <%- info.barangay %> <%- info.city %> <%- info.province %>
+                              </td>
+                              <td><%- info.contact_number %></td>
+                              <td>
+                                <% info.items.forEach(data => { %>
+                                  <p><%- data.name %></p>
+                                <% }) %>
+                              </td>
+                              <td>
+                                <% info.items.forEach(data => { %>
+                                  <p><%- data.quantity %></p>
+                                <% }) %>
+                              </td>
+                              <td id="date"><%- info.date_ordered.toLocaleString() %></td>
+                              <td>
+                                <%- info.payment_method %>
+                                <% if(info.payment_method == 'GCash') { %>
+                                  <!-- <a href=""><button>see attachment</button></a> -->
+                                  <div>
+                                    <a href="/admin/order-status/<%- info.id %>">
+                                      <img src="/<%- info.img_name %>" alt="" style="width: 50px; height: 50px;">
+                                    </a>
+                                  </div>
+                                <% } %>
+                              </td>
+                              <td><%- info.sub_total %></td>
+                              <td><%- info.total_amount %></td>
+                              <td><%- info.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()); %></td>
+                              <td><%- info.order_type %></td>
+                            </tr>
+                          <% }) %>
+                    </tbody>
+                </table>
+                <tr>
+                  <td>
+                    <div class="container">
+                      <div class="btn-group">
+                       <div class="col-md-12 text-center">
+                            <!-- <a href="approved.html" class="btn btn-primary float-right ml-2">Approve</a> -->
+                          <!-- Button trigger modal -->
+                          <!-- <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Cancel</button> -->
+                          <!-- The Modal -->
+                          <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                              <div class="modal-content"> 
+                          <!-- Modal Header -->
+                          <div class="modal-header">
+                            <h4 class="modal-title">Cancel Pending Orders</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                            Are you sure you want to cancel this orders?
+                          </div>
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <a href="" class="btn btn-success">Save Changes</a>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

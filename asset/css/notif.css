@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+    
+html{
+    font-size: 1rem;
+}
+body{
+  background-color: #f2f2f2;
+  margin: 0;
+  font-family: sans-serif;
+}
+.container{
+  width: 50%;
+  margin: 3.2rem auto 0 auto;
+  border: black 5px solid;
+  background-color: #fff;
+}
+header{
+  text-align: center;
+  margin-bottom: 1.5rem; 
+}
+h1{
+  font-weight: 400;
+}
+#description{
+  font-weight: 200;
+  font-style: italic;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+}
+.form-input{
+  margin: 5%;
+  font-size: 1rem;
+}
+
+.details{
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#submit{
+  width: 100%;
+  padding: 0.8rem;
+  background: #4267B2;
+  color: white;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  border: none;
+}
+   
+.reminders{
+  text-align: justify;
+}
+@media(max-width: 1000px){
+  h1{
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  #description{
+    font-size: 0.8rem;
+  }
+ 
+  .form-input h2{
+    font-size: 1rem;
+  }
+
+  .form-input p{
+    font-size: 0.8rem;
+   
+  }
+
+  .details{
+    font-size: 0.8rem;
+  }
+
+}
+  
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/con-form.css">
+<%- include('include/head') %>
+    <title>Guest Information</title>
+</head>
+<body>
+    <div class="page-container">
+        <%- include('include/nav') %> 
+        <div class="body-content">
+            <form action="/multi-order-summary/<%- id %>/user-information" method="POST">
+                <input type="text" name="order_id" value="<%- id %>" hidden>
+                    <div class="title">
+                        <h1>Guest Information</h1>
+                    </div>
+                    <div class="row-1">
+                        <h2>Full Name</h2>
+                            <input  type="text" id="firstname" name="firstname" placeholder="First Name" required/>
+                            <input type="text" id="middlename" name="middlename" placeholder="Middle Name">
+                            <input type="text" id="lastname" name="lastname" placeholder="Last Name" required/>
+                    </div>
+                    <div class="row-2">
+                        <h2>Contact Number</h2> 
+                        <input type="tel" name="contact_number" placeholder="Contact Number" required/>
+                    </div>      
+                    <div class="row-3">
+                        <h2>Delivery Address</h2>
+                            <select id="provinces-select" name="province" class="input1" onchange="updateCities()"  required>
+                                <option value="" disabled selected>Province</option>
+                            </select>
+                            <select id="cities-select" name="city" class="input1" onchange="updateBarangays()"  required>
+                                <option value="" disabled selected>City</option>
+                            </select>
+                            <select id="barangays-select" name="barangay" class="input1"  required>
+                                <option value="" disabled selected>Barangay</option>
+                            </select>
+            
+                            <input class="input1" type="text" name="house_no" id="house_no" placeholder="House Number/Street"  required/>
+                            <input class="input1" type="number" name="zip_code" id="zip_code" placeholder="Zip Code"  required/>
+                    </div>      
+                           
+                    <div class="row-4">
+                        <input type="checkbox"  required>
+                            <span>I agree that as a guest, I will be unable to track nor receive any notification about my order.</span>
+                    </div>     
+                    <div class="row-5">
+                        <button class="proceed-btn">Proceed</button>
+                        <a href="/product"><button class="back-btn" onclick="history.back()" >Back</button></a>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/address.js"></script>
+<%- include('include/footer') %>
+</body>
+</html>

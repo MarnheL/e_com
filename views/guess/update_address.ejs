@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-update-add.css">
+<%- include('include/head') %>
+    <title>History</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="page-container1">
+        <!-- Body container -->
+        <div class="body-content">
+            <form action="/update-address" method="POST">
+                <select id="provinces-select" name="province" onchange="updateCities()" required>
+                    <option value="" disabled selected>Province</option>
+                </select>
+
+                <select id="cities-select" name="city" onchange="updateBarangays()" required>
+                    <option value="" disabled selected>City</option>
+                </select>
+
+                <select id="barangays-select" name="barangay" required>
+                    <option value="" disabled selected>Barangay</option>
+                </select>
+
+                <div class="house_num">
+                    <label for="house_no">House No.</label>
+                    <input type="text" name="house_no" id="house_no" placeholder="House Number/Street" value="<%- guess.house_no %>" required>
+                </div>
+                <div class="zipcode">
+                    <label for="zip_code">Zip Code</label>
+                    <input type="number" name="zip_code" id="zip_code" placeholder="Zip Code" value="<%- guess.zip_code %>" required>
+                </div>
+                <button class="update-btn">Update</button>
+                <a href="cart"></a><button class="exit-btn">Exit</button>
+            </form>
+        </div>
+        <!-- Body container -->
+    </div>
+    <!-- Main container -->
+</body>
+<script src="/js/address.js"></script>
+</html>

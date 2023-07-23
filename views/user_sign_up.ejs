@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-signup.css">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="page-container">
+        <div class="body-content">
+            <div class="err-msg" id="liveAlertPlaceholder"></div>
+            <div class="title">
+                <h1 class="title1">Create Account</h1>
+            </div>
+            <div class="form-div">
+                <form action="/sign-up" method="POST">
+                    <div class="personal-info">
+                       
+                            <h2 class="title2">Personal Information<span class="required"></span></h2>
+                        <div>
+                            <label for="firstname">First Name</label>
+                            <input class="input1" type="text" id="firstname" name="firstname" placeholder="e.g Juan"  required>
+                        </div>
+                        <div>
+                            <label for="middlename">Middle Name</label>
+                            <input class="input1" type="text" id="middlename" name="middlename" placeholder="e.g villanueva">
+                        </div>
+                            <label for="lastname">Last Name</label>
+                            <input class="input1" type="text" id="lastname" name="lastname" placeholder="e.g Dela Cruz" required>
+                        
+                        <div class="contact-cont">
+                            <label for="contact_number">Contact Number</label>
+                            <input class="input1" type="tel" id="contact_number" name="contact_number" placeholder="e.g 091234567"  pattern="^(09|\+639)\d{9}$" required>
+                        </div>
+                    </div>
+                    <div class="address">
+                        <h2 class="title2">Address<span class="required"></span></h2>
+                        
+                            <label for="province">Province </label>
+                            <select id="provinces-select" name="province" class="input1" onchange="updateCities()" required>
+                                <option value="" disabled selected>Province</option>
+                            </select>
+                            
+                            <label for="city">City</label>
+                            <select id="cities-select" name="city" class="input1" onchange="updateBarangays()" required>
+                                <option value="" disabled selected>City</option>
+                            </select>
+                       
+                            <label for="brgy">Barangay</label>
+                            <select id="barangays-select" name="barangay" class="input1" required>
+                                <option value="" disabled selected>Barangay</option>
+                            </select>
+                     
+                            <label for="house_no">House No.</label>
+                            <input class="input1" type="text" name="house_no" id="house_no" placeholder="Block/Lot/street" required>
+                        <div class="zipcode-cont">
+                            <label for="zip_code">Zip Code</label>
+                            <input class="input1" type="number" name="zip_code" id="zip_code" placeholder="Zip Code" required>
+                        </div>
+                    </div>
+                    <div class="account-profile">
+                        
+                        <h2 class="title2"> Account Profile<span class="required"></span></h2>
+                        <div class="account-profile-body">
+                            <label class="title" for="email">Email</label>
+                            <input  class="email" type="email" id="email" name="email" placeholder="Enter email" required>
+                        
+                        
+                            <label class="title" for="password">Password</label>
+                            <input type="password" class="email" placeholder="Enter Password" id="password" name="password">
+                            
+                            <i class="fa-solid fa-eye fa-sm " id="eye"></i> 
+                        </div>
+                    </div>
+                    <div class="createaccount-container">
+                        <button class="createacc-btn" id="liveAlertBtn">Create </button>
+                       <a class="back" href="/">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    <script src="/js/address.js"></script>
+</body>
+<script>
+    const passwordInput = document.querySelector("#password")
+    const eye = document.querySelector("#eye")
+    eye.addEventListener("click", function(){
+        this.classList.toggle("fa-eye-slash")
+        const type = passwordInput.getAttribute("type") === "password" ? "text" : "password"
+        passwordInput.setAttribute("type", type)
+    })
+</script>
+</html>

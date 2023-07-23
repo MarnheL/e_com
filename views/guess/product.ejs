@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/guess-product.css">
+  
+ 
+<%- include('include/head') %>
+    <title>Products</title>
+</head>
+    <body>
+        <div class="products-page-container">
+            <!-- nav bar -->
+            <%- include('include/nav') %>
+            <!-- body -->
+            <div class="sort">
+                <form action="/product" method="GET">
+                    <select name="category" id="">
+                        <option value="" disabled selected>All</option>
+                        <% category.forEach(data => { %>
+                            <option value="<%- data.category %>"><%- data.category %></option>
+                        <% }) %>
+                    </select>
+                    <button class="sort-button">sort</button>
+                </form>
+            </div>
+            <!-- <form action="/multi-order-summary/selected-item" method="POST"> -->
+                <!-- <div class="checkout">
+                    <button id="myButton" disabled>Check Out</button>
+                </div> -->
+                <div class="products-content">
+                    <!-- first product -->
+                    <% let counter = 1 %>
+                    <% if(renderProduct != '') { %>
+                        <% renderProduct.forEach((data, index) => { %>
+                            <div class="products1-container">
+                                <div class="img-container">
+                                    <img class="image-1" src="<%- data.img_name %>" >
+                                </div>
+                                
+                                <div class="description-1">
+                                    <ul>
+                                        <!-- <li><%- data.id %></li> -->
+                                        <li><%- data.product_name %></li>
+                                        <li>Price: <%- data.product_price %></li>
+                                        <li>Stocks: <%- data.product_stock %></li>
+                                    </ul>
+                                </div >
+                                <div class="chexbox-container">
+                                    <!-- <input type="checkbox" class="order_id" onclick="selected" name="order_id" value="<%- data.id %>"> -->
+                                    <!-- <input  type="checkbox" class="order_id " onclick="selected" name="order_id" value="<%- data.id %>"> -->
+
+                               
+                                </div>
+                                <div class="btns1-container">
+                                    <a class="buy-now-btn1" href="/order-summary/<%- data.id %>/confirm">Buy Now</a>
+
+                                    <!-- eto yung add to cart natin -->
+                                    <form action="/product/<%- data.id %>/add-to-cart" method="POST">
+                                        <input type="number" name="quantity" value="1">
+                                        <button>Add to cart</button>
+                                    </form>
+                                    <!-- eto yung add to cart natin -->
+                                </div>
+
+                            </div>
+                            
+                        <% }) %>
+                    <% }else{ %>
+                        <p>Out of Stock</p>
+                    <% } %>
+
+                 
+                </div>
+            <!-- </form> -->
+           <div onclick="scrollToTOp()" class="to-top">
+            <i class="fas fa-chevron-up"></i>
+           </div>
+                
+            
+        </div>
+
+        
+        <!-- end or products main container -->
+        <%- include('include/footer') %>   
+    </body>
+
+
+
+
+    <script>
+        
+        // GUess account
+        // disbled checkout on guess
+        function selected(){
+        }
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const button = document.querySelector('#myButton');
+
+        function updateButtonState() {
+        const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        button.disabled = checkedCount < 2;
+        }
+
+        checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', updateButtonState);
+        });
+        
+        // Scroll to top
+        function scrollToTOp(){
+            window.scrollTo(0,0);
+        }
+        
+    </script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script type="text/javascript">
+        $(".add-to-cart-btn1").click(function () {
+          alert("Added to Cart. Go to Cart to see your added products");
+        
+        });
+
+      
+      </script>
+    
+    </html>
+
+ 

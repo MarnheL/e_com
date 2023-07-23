@@ -1,0 +1,121 @@
+
+    
+<%- include('include/head') %>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <%- include('include/sidebar') %>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center text-center ">
+                    <i class="fas fa-align-left primary-text fs-4 me-3 text-dark " id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Dashboard</h2>
+                </div>
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold text-white" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2 text-white"></i>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div> -->
+            </nav>
+
+            <div class="container-fluid px-4">
+                <div class="row g-3 my-2">
+                    <div class="row g-3 my-2">
+                               <div class="card text-bg-primary me-3 " style="max-width: 18rem;">
+                                    <div class="card-body text-success">
+                                        <h5 class="card-title text-white"><i class="bi bi-house-fill pe-1"></i>Inventory</h5>
+                                        </div>
+                                        <div class="card-footer bg-transparent border-white">
+                                            <a href="/admin/dashboard" class="text-decoration-none text-white"> View details </a>
+                                        </div>
+                                </div>
+
+                                <div class="card text-bg-success  me-3" style="max-width: 18rem;">
+                                    <div class="card-body text-success">
+                                    <h5 class="card-title text-white"><i class="bi bi-person-fill pe-1"></i>Customers</h5>
+                                    </div>
+                                    <div class="card-footer bg-transparent border-white " >
+                                        <a href="/admin/dashboard/accounts" class="text-decoration-none text-white"> View details </a>
+                                    </div>
+                                </div>
+                            
+                                <div class="col-xl-6 col-md-12 postion-relative"style="max-width: 28rem;">
+                                    <div class="card bg-dark ">
+                                        <div class="card-body  pb-3">
+                                            <div class="d-flex justify-content-between p-md-1 ">
+                                                <div class="d-flex flex-row">
+                                                    <div>
+                                                        <h4 class="text-white">Total Sales</h4>
+                                                        <p class="mb-0 text-white" >Sales</p>
+                                                    </div>
+                                                </div>
+                                                <div class="align-self-center">
+                                                    <h2 class="h1 mb-0 text-white" ><%- total_sales %></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <h3 class="fs-4 mb-3">Inventory</h3>
+                <div class="col">
+                    <table class="table table-hover bg-white rounded text-center ">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" width="50">ID</th>
+                                <th scope="col">Product Image</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Available Stocks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% product.forEach(data => { %>
+                                <tr>
+                                    <td><%- data.id %></td>
+                                    <td>
+                                        <img src="<%- data.img_name %>" alt="" style="width: 50px; height: 50px;">
+                                    </td>
+                                    <td><%- data.product_name %></td>
+                                    <td><%- data.product_stock %></td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin.js"></script>
+  
+</body>
+
+</html>

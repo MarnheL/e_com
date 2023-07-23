@@ -1,0 +1,106 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #0A2647;
+  padding-bottom: 15px;
+  display: flex, ;
+  flex-direction: row-reverse;
+  justify-content:flex-end;
+  
+}
+.navbar a{
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: white;
+  text-align: justify;
+  padding: 16px 18px;
+  text-decoration: none;
+  background-color: none;
+  display: inline-block;
+}
+.dropdown {
+  float: right;
+  overflow: hidden;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  margin-top: 10px;   
+}
+
+.dropdown .dropbtn {
+  font-size: 15px;  
+  border: 0;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  cursor: pointer;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 0;
+  background-color: #07335A;
+}
+.dropdown-content a {
+  float: none;
+  color: #FFF;
+  padding-left: 40px;
+  text-decoration: none;
+  display: block;
+  text-align:justify;  
+}
+.dropdown-content a:hover {
+  background-color: #579BB1;
+  transition: 0.1s;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+  margin-right: 1px;
+  align-items: right;
+  width: 10px;
+}
+
+/* ICONS */
+.dropdown-content .fa-house{
+  margin-right: 5px;
+}
+.dropdown-content .fa-cart-shopping{
+  margin-right: 5px;
+}
+.dropdown-content .fa-user{
+  margin-right: 5px;
+}
+.dropdown-content .fa-bell{
+  margin-right: 5px;
+}
+.dropdown-content .fa-circle-info{
+  margin-right: 5px;
+}
+.dropdown-content .fa-bag-shopping{
+  margin-right: 5px;
+}
+
+/* signup */
+.sign-up {
+  margin-top: 7px;   
+  display: flex;
+  justify-content: flex-end;
+  font-size: 17px;
+ 
+
+}
+.sign-up .sign-up-title{
+  font-size: 17px;
+  font-weight: 100;
+  color: #fff;
+}

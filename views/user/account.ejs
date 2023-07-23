@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-account.css">
+<%- include('include/head') %>
+    <title>My account</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="page-container">
+        <%- include('include/nav') %> 
+        <!-- Body container -->
+        <div class="body-content">
+                <div class="column">
+                    <div class="btn-container">
+                       <a class="myaccount active" href="account">Account</a>
+                       <a class="orders " href="order">Orders</a>
+                       <a class="history" href="history">History</a>  
+                    </div>
+                </div>
+                <div class="column-1">
+                    <div class="col-1" >
+                        <form  action="">
+                            <div class="name-container">
+                                <label class="label" for="">Name</label>
+                                <input type="text" name="" id="" value="<%- user.firstname %> <%- user.middlename %> <%- user.lastname %>" readonly >
+                            </div>
+
+                            <div class="contact-container">
+                                <label for="">Contact Number</label>
+                                <input type="text" name="" id="" value="<%- user.contact_number %>" readonly>
+                            </div>
+
+                            <div class="province-container">
+                                <label for="">Province</label>
+                                <input type="text" name="" id="" value="<%- user.province %>" readonly>
+                            </div>
+                                            
+                            <div class="city-container">
+                                <label for="">City</label>
+                                <input type="text" name="" id="" value="<%- user.city %>" readonly>
+                            </div>
+                            
+                            <div class="barangay-container">
+                                <label for="">Barangay</label>
+                                <input type="text" name="" id="" value="<%- user.barangay %>" readonly>
+                            </div>
+                            
+                            <div class="hoouse-container">
+                                <label for="">House/Street/Purok</label>
+                                <input type="text" name="" id="" value="<%- user.house_no %>" readonly>
+                            </div>
+                            
+                            <div class="zip-container">
+                                <label for="">Zip code</label>
+                                <input type="text" name="" id="" value="<%- user.zip_code %>" readonly>
+                            </div>
+                                
+                            <div class="edit-container">
+                                <a class="edit-btn" href="/user/update-info">Edit</button></a>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <form action="/user/update-password" method="POST">
+                            
+                            <div class="current_password">
+                                <label for="current_password" >Current Password</label>
+                                <input type="password" id="current_password" name="current_password" required>
+                            </div>
+                            <div>
+                                <label for="new_password">New Password</label>
+                                <input type="password" id="new_password" name="new_password" onkeyup="checkPasswords()" required>
+                            </div>
+                            <div>
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" id="confirm_password" name="confirm_password" onkeyup="checkPasswords()" required>
+                            </div>
+                            <div class="update-password"> 
+                                <button id="updatePasswordButton" class="updatepass" disabled>Update Password</button>
+                                <div class="err-msg" id="liveAlertPlaceholder"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        </div>
+        <!-- Body container -->
+    </div>
+    <!-- Main container -->
+  
+    <script src="/js/script.js"></script>
+    <script>
+        const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+        const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        console.log(message)
+        wrapper.innerHTML = `<div>${message}</div>`
+           
+        
+    
+        alertPlaceholder.append(wrapper)
+        }
+    
+        let message = '<%- messages %>'
+        if(message.length > 0){
+            appendAlert(message, 'danger')
+        }
+        
+    </script>
+</body>
+</html>

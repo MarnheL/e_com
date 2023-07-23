@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+ 
+}
+body{
+  font-family: 'Poppins', sans-serif;
+  min-height: 100%;
+  height: 100vh;  
+  
+}
+.page-container{
+  background: rgba(0, 0, 0, 0.5) url('../img/image.jpg');
+  background-blend-mode: darken;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  
+}
+.first-title{
+  font-size: 3.3vw;
+  color: #fff;
+  line-height:4ch;
+  margin-left: 2%;
+  margin-top: 80px;
+  font-weight: 100;
+  
+}
+.first-title h1{
+    color: white;
+  
+  
+}
+.second-title{
+  font-size: 1.8vw;
+  font-weight: 400;
+  color: #fff;
+  margin-left: 2%;
+
+
+  
+}
+
+
+
+/* QUICK ORDER BUTTON */
+.quick-order-btn-container{
+  margin-left: 2%;
+  margin-top: 20px;
+}
+
+.quick-order-btn-container a {
+  position: relative;
+  display: inline-block;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  letter-spacing: 0.9px;
+  border: 1px solid  rgba(10, 38, 71, 0.5);;
+  background-color:rgba(10, 38, 71, 0.8);;
+  cursor: pointer;
+  
+}
+
+.quick-order-btn-container a:hover {
+  background: rgba(10, 38, 71, 0.5);
+  background: rgba(10, 38, 71, 3);
+  color: #fff;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.quick-order-btn-container a span {
+  position: absolute;
+  display: block;
+}
+
+.quick-order-btn-container a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff);
+  animation: animacaoBotao1 1s linear infinite;
+}
+
+@keyframes animacaoBotao1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.quick-order-btn-container a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #fff);
+  animation: animacaoBotao2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes animacaoBotao2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+
+.quick-order-btn-container a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #fff);
+  animation: animacaoBotao3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+  @keyframes animacaoBotao3 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.quick-order a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #fff);
+  animation: animacaoBotao4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes animacaoBotao4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+.first-title{
+  width: 100%;
+  line-height: normal;
+  font-size: 5vw;
+}
+.second-title{
+  
+  width: 100%;
+  font-size: 4vw;
+  
+}
+.quick-order-btn-container a{
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+}

@@ -1,0 +1,265 @@
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+
+    width: 100%;
+}
+.products-page-container{
+    height: 100%;
+    min-height: 100vh;
+    
+}
+
+
+.products-content{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    row-gap: 30px;
+    margin: 100px auto;
+  
+    
+}
+
+
+select{
+    font-size: 13px;
+    padding: 5px 15px;
+    
+}
+.sort{
+    padding: 5px 10px; 
+    float: right;
+    margin-right: 10%;
+    margin-top: 1%;
+    
+}
+.sort-button{
+    padding: 5px 20px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.checkout{
+    /* border: 3px solid black; */
+    position: absolute;
+    top: 13%;
+    left: 90%;
+ 
+   
+}
+.checkout button{
+    border-radius: 5px;
+   
+}
+.checkout button{
+    border: 1px solid #4267B2;
+    background-color: #4267B2;
+    color: #ffffff;
+    padding: 5px 10px;
+    
+}
+
+.checkout :hover {
+    border: 1px solid #4267B2;
+    background-color: #4267B2;
+    color: #ffffff;
+    padding: 5px 10px;
+}
+  
+  .checkout :disabled,
+  .checkout [disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
+
+/* to set the image in same size */
+
+.products1-container{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+   
+}
+.image-1{
+    max-width: 100%;
+    width: 150px;
+    margin: 0 20px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+
+
+
+  
+    
+}
+.description-1{
+    width: 40%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.chexbox-container{
+    position: absolute;
+    top: 20%;
+    max-width: 100%;
+    font-size: 16px;  
+    width: 90%;
+   
+}
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1.2); /* IE */
+    -moz-transform: scale(1.2); /* FF */
+    -webkit-transform: scale(1.2); /* Safari and Chrome */
+    -o-transform: scale(1.2); /* Opera */
+    transform: scale(1.2);
+    position: relative;
+    left: 20%;
+}
+.btns1-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+    
+
+   
+    
+
+
+}
+.buy-now-btn1{
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 3px;
+  
+
+}
+a{
+    text-decoration: none;
+}
+
+.add-to-cart-btn1{
+    padding: 5px 3px;
+    border: 1px solid;
+    border-color: #000;
+    border-radius: 5px;
+    background-color: #ffff;
+    color: #000;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+
+
+.to-top{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 5px 10px;
+    background-color: #4267B2;
+    color: #fff;
+    border-radius: 50px;
+    border-radius: 1px solid #fff;
+    cursor: pointer;
+    transition: all 0.5s ease 0s;
+    
+
+}
+
+    
+@media (max-width: 1000px) {
+
+    
+.sort option{
+    font-size: 0.6rem;
+}
+ 
+.sort-button{
+   font-size: 0.8rem;
+}   
+.products-content{ 
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 100%; 
+}
+
+.products1-container{
+    
+    
+    margin: 0 2%;
+}
+.description-1{
+    font-size: 0.8rem;
+
+    width: 100%;
+    text-align: center;
+        
+    
+}
+  
+.image-1{
+    width: 130px;
+    height: 130px;
+}
+.btns1-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;   
+}
+.buy-now-btn1{
+    font-size: 0.8rem;
+}
+.add-to-cart-btn1{
+    font-size: 0.8rem;
+} 
+.checkout{
+    /* border: 3px solid black; */
+    position: absolute;
+    top: 13%;
+    left: 5%;
+    font-size: 13px;
+}
+.checkout button{
+    font-size: 12px;
+}
+
+
+
+}
+
+@media (max-width: 480px) {
+    .btns1-container{
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+    }
+    .buy-now-btn1{
+        margin-bottom: 5px;
+    }
+}

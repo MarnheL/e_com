@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+.page-container1{
+    height: 100%;
+    min-height: 100vh;
+    
+}
+
+.try{
+    position: relative;
+}
+.cart-content{
+    height: auto;
+    width: 70%;
+    /* border: 3px solid black; */
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 20px;
+}
+
+table{
+    width: 100%;
+ }
+
+
+table td{
+  
+    width: 20%;
+}
+
+.table-data-image{
+    text-align: center;
+    width: 100px; height: 100px;
+ 
+}
+.table-data-image img{
+    
+    width: 80%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+ 
+}
+.table-data-name{
+    text-align: center;
+    font-size: 1em;
+ 
+}
+/* .table-data-quantity {
+    border: 1px solid black;
+} */
+.table-data-quantity form{
+    
+    padding: 0;
+    margin: 0;
+}
+
+
+.quantity-container{
+    justify-content: center;
+    display: flex;
+}
+.negative {
+    margin-right: 15px;
+    padding: 1px;
+    
+}
+.positive {
+    margin-left: 15px;
+    padding: 1px;
+   
+} 
+
+.table-data-action{
+
+    text-align: center;
+}
+
+
+.hl{
+    border-bottom: 10px solid black;
+    top: 0%;
+    
+}
+
+hr{
+    border-top: 3px solid #000;
+    position: absolute;
+    top: 67%;
+    left: 29%;
+    font-weight: bold;
+}
+.table-data-amount{
+    width: 20%;
+    text-align: center;
+    font-size: 1em;
+    
+}
+
+
+.subtotal{
+    padding-bottom: 30px;
+    font-size: 1em;
+ 
+}
+
+.subtotal td{
+    padding-bottom: 30px;
+    font-size: 1em;
+}
+.shippingfee td{
+    padding-bottom: 10px;
+    font-size: 1em;
+}
+.total-amount td{
+    font-size: 1em;
+}
+.total{
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 1em;
+
+}
+.col-2 td{
+    padding-bottom: 100px;
+}
+
+
+.fa-trash{
+    color: black;
+}
+
+
+
+.cart-content h1{
+    text-align: center;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.address{
+    margin-top: 30px;
+  
+}
+div label{
+    font-size: 17px;
+    font-weight: 400;
+   
+}
+.addres{
+    border:3px solid  red;
+}
+.name input{
+    width:30%;
+    
+    padding-left: 5px;
+    font-size: 17px
+}
+.name i{
+    color: #000;
+}
+.address {
+    margin: 0;
+    
+}
+.address, .contact, .name{
+
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.address input{
+    width: 80%;
+    font-size: 17px;
+    width:70%;
+}
+
+.address i{
+    color: #000;
+}
+.contact input{
+    width:20%;
+    font-size: 15px;
+    padding-left: 5px;
+    font-size: 17px
+}
+.contact i{
+    color: #000;
+}
+  
+.cod, .gcash{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+
+.placeorder-btn{
+    margin-top: 10px;
+    padding: 7px 15px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.file{
+    margin-left: 10px;
+}
+
+
+.cart-data-summary{
+    border: 1px solid #d2d2d2;
+  
+    
+    border-radius: 10px;  
+
+
+    padding: 0;
+    width: 70%;
+
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 20px;
+}
+.label-title{
+    font-size: 1em;
+    font-weight: 200;
+}
+.summary{
+    padding: 5px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+    
+    
+
+}
+.title{
+    
+    text-align: center;
+    font-size: 1em;
+  
+}
+
+.title a{
+    color: #000;
+}
+.empty-products{
+    /* border: 2px solid black; */
+    position: relative;
+    margin-top: 10%;
+}
+
+.empty-products p{
+    font-size: 1rem;
+}
+
+@media (max-width: 1000px) {
+    
+    h1{
+        font-size: 1.2rem;
+            
+    }
+
+
+    .table-data-name, .table-data-amount, .subtotal, .shippingfee, .total-amount{
+        font-size: 0.8rem;
+
+        
+    }
+    
+    .table-data-image img{
+        width: 70px;
+        height: 70px;
+    }
+    .table-data-name{
+        width: 0%;
+        padding: 0;
+    
+    }
+    .table-data-amount{
+        width: 0;
+        padding: 0;
+    }
+
+    .negative {
+        margin-right: 5px; 
+        padding: 0;
+    
+    }
+    .positive {
+        margin-left: 5px;
+        padding: 0;
+    } 
+
+    .table-data-action i{
+        font-size: 22px;
+    }
+    .info-details label{
+        font-size: 0.8rem;
+        background-color: lightblue;
+    
+    }
+    .address label{
+        font-size: 0.8rem;
+    }
+    .address input{
+        width: 90%;
+
+        font-size: 0.8rem;
+    
+    }
+    .address i{ 
+        font-size: 17px;
+        
+    }
+    .contact label{
+        font-size: 0.8rem;
+    }
+    .contact input{
+        font-size: 0.8rem;
+    }
+
+
+    .contact i{ 
+        font-size: 17px;
+    }
+    .gcash label{
+        font-size: 0.8rem;
+    }
+    .cod label{
+        font-size: 0.8rem;
+       
+    }
+
+    .placeorder-btn{
+        font-size: 0.8rem;
+        padding: 5px 13px;
+    }
+    
+    .cart-data-summary p{
+        font-size: 1.2rem;
+        
+      
+        
+    }
+    .empty-products p{
+        font-size: 0.8rem;
+       
+    }
+    /* Cart guess */
+    .name label{
+        font-size: 0.8rem;
+        display: block;
+    }
+    .name input{
+        font-size: 0.8rem;
+        width: 60%;
+    }
+    .name a{
+        font-size: 0.8rem;
+        width: 60%;
+    }
+    .contact label{
+        display: block;
+    }
+    .contact input{
+        width: 50%;
+        
+    }
+
+    
+}
+@media (max-width: 720px) {
+
+    .cart-content{
+        
+        width: 70%;
+    }
+    .cart-data-summary{
+        width: 100%;
+        border: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-content{
+        width: 100%;
+    }
+}
+
+
+

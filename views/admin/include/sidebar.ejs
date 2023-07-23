@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/admin.css">
+
+
+<div class="bg-dark" id="sidebar-wrapper">
+    <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+           YAP'S MERCHANDISE</div>
+    <div class="list-group list-group-flush my-3">
+        <a href="/admin/dashboard" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a href="/admin/inventory" class="list-group-item list-group-item-action bg-transparent second-text active fw-bold"><i
+                class="bi bi-house-fill me-2"></i></i>Inventory</a>
+        <a href="/admin/order-status" class="list-group-item list-group-item-action bg-transparent second-text active fw-bold"><i
+                class="bi bi-info-circle-fill me-2"></i>Order Status</a>
+        <div class="dropdown">
+            <a href="#" class="btn btn-secondary dropdown-toggle bg-transparent  border-0 ms-3 fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" list-group-item list-group-item-action bg-transparent second-text active fw-bold dropdown-toggle"><i
+                    class="bi bi-bar-chart-fill me-2" ></i>Reports</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/admin/sales-report">Sales Report</a></li>
+                <li><a class="dropdown-item" href="/admin/inventory-report">Inventory Report</a></li>
+            </ul>
+        </div>
+
+        <a href="/admin/accounts" class="list-group-item list-group-item-action bg-transparent second-text active fw-bold"><i
+                 class="bi bi-person-fill me-2"></i>Accounts</a>
+        <form action="/admin/logout" method="POST">
+                <button class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i class="fas fa-power-off me-2"></i>Logout</button>
+        </form>
+    </div>
+</div>

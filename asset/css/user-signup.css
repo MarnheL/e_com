@@ -1,0 +1,386 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+   
+    scroll-behavior: smooth;
+ 
+    background: #00B4DB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0083B0, #00B4DB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 100vh;
+
+    /* margin:0;
+    width:100vw;
+    height:100vh;
+    overflow:auto; */
+    
+}
+/* .page-container{
+    height: 100%;
+    min-height: 100vh;
+
+} */
+.body-content{
+    
+    /* border: 3px solid black; */
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    height:auto;
+    min-height: 100vh;
+    
+
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: rgba(0,0,0,.5);
+ 
+   
+   
+}
+
+
+.title{
+   
+    text-align: center;
+    color: #fff;
+  
+
+}
+
+.title2{
+    text-align: center;
+    color: #fff;
+    font-weight: 200;
+    font-size: 20px;
+    background: rgba(0,0,0,.5);
+    
+    padding: 5px;
+    margin: 0;
+}
+
+label{
+    width: 100px;
+    display: inline-block;
+}
+
+.personal-info{
+    width: 100%;
+    clear: both;
+    
+   
+    
+}
+
+
+.personal-info input{
+    width: 50%;
+    clear: both;
+    margin-bottom: 1%;
+    margin-left: 20px;
+    font-size: 15px;
+    padding: 5px 5px;
+
+    border-radius: 5px;
+
+    
+
+}
+
+.personal-info label{
+  
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 20%;
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+
+    
+
+    
+}
+
+.address label{
+  
+    font-size: 17px;
+    font-weight: 700;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: 20%;
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+
+    
+}
+
+.address select{
+    width: 52%;
+    clear: both;
+    margin-bottom: 1%;
+    margin-left: 20px;
+    font-size: 1rem;
+    padding: 5px 5px;
+
+    border-radius: 5px;
+  
+   
+}
+.address input{
+    width: 50%;
+    clear: both;
+    margin-bottom: 1%;
+    margin-left: 20px;
+    font-size: 15px;
+    padding: 5px 5px;
+
+    border-radius: 5px;
+}
+
+
+
+.account-profile{
+    position: relative;
+    margin-bottom: 5%;
+    
+}
+
+.account-profile-body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  
+   
+    
+}
+
+.account-profile-body input{
+    width: 30%;
+    clear: both;
+    margin-bottom: 1%;
+    margin-left: 5px;
+    font-size: 1rem;
+    padding: 3px 3px;
+    margin-top: 10px;
+    border-radius: 5px;
+
+   
+
+    
+}
+
+.account-profile-body label{
+    font-size: 17px;
+    font-weight: 700;
+    
+    margin-top: 10px;
+
+    color: #fff;
+    font-weight: 100;
+    font-family: 'Poppins', sans-serif;
+}
+.fa-eye{
+    position: absolute;
+    top: 77%;
+    left: 86%;
+    cursor: pointer;
+    color: gray;
+}
+
+
+.createaccount-container{ 
+   
+    text-align: center;
+}
+.createaccount-container a {
+    text-decoration: none;
+
+
+}
+.back{
+ 
+    padding:3px 30px;
+    border:none;
+    border-radius: 5px;
+    background-color: #9b0a0a;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.createacc-btn{
+    
+    padding: 6px 30px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0,0,0,.5);
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+
+}
+
+.required:before{
+    content:"*";
+    font-weight:bold;
+    color: #e31818;
+  }
+
+  /* (768x1024) iPad 1 & 2, Portrait */
+@media  (max-device-width: 1024px) and (orientation: portrait) {
+    .body-content{
+        width: 50%;
+        height: 100%;
+      
+    }
+
+    
+    h1{
+        
+        font-size: 1rem;
+      
+    }
+    .title2{
+        font-size: 0.8rem;
+       
+        
+    }
+    .personal-info label{
+        font-size: 0.8rem;
+        margin: 0;
+        margin-left: 10px;
+        width: auto; 
+        
+    }
+    .personal-info input{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 87%;
+        padding:3px 3px;
+    
+    }
+    .contact-cont input{
+        
+        margin-bottom:10px;
+        /* background-color: red; */
+    }
+    .address label{
+        font-size: 0.8rem;
+        width: auto;    
+        display: block;
+        margin: 0;
+        margin-left: 10px;
+    }
+    .address select{
+        font-size: 0.8rem;
+        margin: 0;
+        margin-left: 10px;
+        width: min-content;
+        padding:3px 3px;
+        width: 89%;
+    }
+    .address option{
+        font-size: 0.7rem;
+        
+    }
+    .address input{
+        font-size: 0.8rem;
+        margin-left: 10px;
+        width: 87%;
+        padding:3px 3px;
+        
+       
+    }
+    .zipcode-cont input{
+        margin-bottom:10px;
+        /* background-color: red; */
+    }
+    .account-profile-body{
+        position: relative;
+        
+        
+    }
+    .account-profile-body label{
+        font-size: 0.8rem;
+        
+        text-align: left;
+        width: 22%;
+       
+        margin: 0;
+        margin-left: 10px;
+        margin-right: 0;
+        
+
+     
+        
+    }
+    .account-profile-body input{
+        font-size: 0.8rem;
+        
+        width: 50%;
+        margin-top: 0;
+       
+        padding:3px 3px;
+
+        
+       
+    }
+    
+
+    .fa-eye{
+        position: absolute;
+        top: 87%;
+        left: 100%;
+        cursor: pointer;
+        color: gray;
+    }
+    
+    .createaccount-container button{
+        font-size: 0.6rem;
+        
+      
+    }
+    .createaccount-container input{
+        font-size: 0.8rem;
+    }
+    
+   .back{
+        font-size: 0.6rem;
+        
+        
+   }
+  
+   
+   
+   
+
+
+
+}
+@media (max-width: 720px) {
+    .body-content{
+        width:70%;
+        border-radius: 0;
+        height: 100%;
+    }
+}
+@media  (max-device-width: 480px)  {
+    .body-content{
+        min-width: 90%;
+        height: 100%;
+       
+
+        
+        
+    }
+}

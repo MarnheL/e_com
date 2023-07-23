@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-update-info.css">
+    <title>Update Account</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="page-container">
+        <!-- Body container -->
+        <div class="body-content">
+            <div class="update-account"> 
+                <h1>UPDATE ACCOUNT</h1>
+            </div>
+            <form action="/update-info" method="POST">
+                <div class="personal-info">
+                    <h2 class="title">Personal Information</h2>
+                    <div class="first-name">
+                        <label class="" for="firstname">First Name</label>
+                        <input class="input1" type="text" id="firstname" name="firstname" value="<%- user.firstname %>" required>
+                    </div>
+
+                    <div  class="first-name">
+                        <label  class="" for="middlename">Middle Name</label>
+                        <input class="input2" type="text" id="middlename" name="middlename" value="<%- user.middlename %>" >
+                    </div>
+
+                    <div  class="first-name">
+                        <label class="" for="lastname">Last Name</label>
+                        <input class="input3" type="text" id="lastname" name="lastname" value="<%- user.lastname %>" required>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h2 class="title">Contact Information</h2>
+                        <label class="" for="contact_number">Contact Number</label>
+                        <input class="input4" type="tel" id="contact_number" name="contact_number" value="<%- user.contact_number %>" pattern="^(09|\+639)\d{9}$" required>             
+                </div>   
+                <div class="address">
+                    <h2 class="title">Address</h2>
+                    <div class="province">
+                        <label class="" for="zip_code">Province</label>
+                            <select class="input5" id="provinces-select" name="province" class="create-smallinput" onchange="updateCities()" required>
+                                <option value="<%- user.province %>" selected><%- user.province %></option>
+                            </select>
+                    </div>
+
+                    <div class="city">
+                        <label class="" for="zip_code">City</label>
+                            <select class="input6" id="cities-select" name="city" class="create-smallinput" onchange="updateBarangays()" required>
+                                <option value="<%- user.city %>" selected><%- user.city %></option>
+                            </select>
+                    </div>
+                        
+                    <div class="barangay">  
+                        <label class="" for="zip_code">Barangay</label>
+                            <select class="input7" id="barangays-select" name="barangay" class="create-smallinput" required>
+                                <option value="<%- user.barangay %>" selected><%- user.barangay %></option>
+                            </select>
+                    </div>
+
+                    <div class="house">
+                        <label class="" for="house_no">House No.</label>
+                        <input class="input8" type="text" name="house_no" id="house_no" value="<%- user.house_no %>" required>
+
+                    </div>
+
+                    <div class="zipcode">
+                        <label class="" for="zip_code">Zip Code</label>
+                        <input class="input9" type="number" name="zip_code" id="zip_code" value="<%- user.zip_code %>" required>
+                    </div>  
+                </div>
+                <div class="btns">
+                    <button class="update-btn">Update</button>
+                    <input class="backbtn" type="button" value="Back" onclick="history.back()">
+                </div>
+            </form>
+            
+        </div>
+        <!-- Body container -->
+    </div>
+    <!-- Main container -->
+    <script src="/js/address.js"></script>
+</body>
+</html>

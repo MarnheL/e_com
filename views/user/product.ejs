@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-product.css">
+<%- include('include/head') %>
+    <title>Products</title>
+</head>
+    <body>
+        <!-- Main container -->
+        <div class="products-page-container">
+            <%- include('include/nav') %>
+            <!-- body -->
+            <div class="sort">
+                <form action="/user/product" method="GET">
+                    <select name="category" id="">
+                        <option value="" disabled selected>All</option>
+                        <% category.forEach(data => { %>
+                            <option value="<%- data.category %>"><%- data.category %></option>
+                        <% }) %>
+                    </select>
+                    <button class="sort-button">sort</button>
+                </form>
+            </div>
+            <!-- Body container -->
+            <div class="products-content">
+                <!-- first product -->
+                <% if(renderProduct != '') { %>
+                    <% renderProduct.forEach((data, index) => { %>
+                        <div class="products1-container">
+                            <div class="img-container">
+                                <img class="image-1" src="<%- data.img_name %>" >
+                            </div>
+                            <div class="description-1">
+                                <ul>
+                                    <li><%- data.product_name %></li>
+                                    <li>Price: <%- data.product_price %></li>
+                                    <li>Stocks: <%- data.product_stock %></li>
+                                </ul>
+                            </div > 
+                            <div class="btns1-container">
+                                <% if(data.product_stock <= 0) { %>
+                                    <a href="/user/order-summary/<%- data.id %>"><button class="buy-now-btn1" disabled>Buy Now</button></a>
+                                <% }else{ %>
+                                    <a href="/user/order-summary/<%- data.id %>"><button class="buy-now-btn1">Buy Now</button></a>
+                                <% } %>
+
+                                <button class="add-to-cart-btn1" id="cartBtn<%- index %>" data-modal-target="#modal<%- data.id %>"><i class="fa-sharp fa-solid fa-cart-plus fa-sm"></i>Add to cart</button>
+                                    <div class="modal" id="modal<%- data.id %>">
+                                        <div class="modal-header">
+                                        <div class="title">Add to Cart</div>
+                                        <button data-close-button class="close-button">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="img-container">
+                                                    <img class="image-1" src="/<%- data.img_name %>" >
+                                                </div>
+                                                <div class="description-1">
+                                                    <ul>
+                                                        <li><%- data.product_name %></li>
+                                                        <li>Price: <%- data.product_price %></li>
+                                                        <li>Stocks: <%- data.product_stock %></li>
+                                                    </ul>
+                                                </div >
+                                            </div>
+
+                                            <form action="/user/product/<%- data.id %>/add-to-cart" method="POST">
+                                                <span class="button" id="decrement"><i class="fa-solid fa-minus fa-lg"></i></span>
+                                                <input type="number" id="number" value="1" name="quantity">
+                                                <span class="button" id="increment"><i class="fa-solid fa-plus"></i></span>
+                                                <button class="add-to-cart-btn1"  id="cartBtn<%- index %>"></i>Done</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <div id="overlay"></div>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% }else{ %>
+                    <p>Out of Stock</p>
+                <% } %>
+            </div> 
+            <!-- BOdy container -->
+            <div onclick="scrollToTOp()" class="to-top">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div> 
+        <!-- Main container -->
+        <%- include('include/footer') %>
+    </body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // $(".add-to-cart-btn1").click(function () {
+        //   alert("Added to Cart. Go to Cart to see your added products");
+        
+        // });
+
+         // Scroll to top
+         function scrollToTOp(){
+            window.scrollTo(0,0);
+        }
+        
+      </script>
+      <script>
+        // Get the elements
+        var decrementButton = document.getElementById("decrement");
+        var incrementButton = document.getElementById("increment");
+        var numberInput = document.getElementById("number");
+    
+        // Decrement button click event
+        decrementButton.addEventListener("click", function() {
+          var currentValue = parseInt(numberInput.value);
+          numberInput.value = currentValue - 1;
+        });
+    
+        // Increment button click event
+        incrementButton.addEventListener("click", function() {
+          var currentValue = parseInt(numberInput.value);
+          numberInput.value = currentValue + 1;
+        });
+      </script>
+
+      <script>
+        const openModalButtons = document.querySelectorAll('[data-modal-target]')
+        const closeModalButtons = document.querySelectorAll('[data-close-button]')
+        const overlay = document.getElementById('overlay')
+
+        openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+        })
+
+        overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+        })
+
+        closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+        })
+
+        function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+        }
+
+        function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+        }
+    </script>
+    </html>
+    

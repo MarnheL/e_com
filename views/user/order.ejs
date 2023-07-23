@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user-orders.css">
+<%- include('include/head') %>
+    <title>Order</title>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="page-container">
+        <%- include('include/nav') %> 
+        <!-- Body container -->
+        <div class="body-content">
+            <div class="column">
+                <div class="btn-container">
+                    <a class="myaccount " href="account">Account</a>
+                    <a class="orders active " href="order">Orders</a>
+                    <a class="history" href="history">History</a>  
+                </div>
+            </div>
+            <!-- table -->
+            <div class="column-1">  
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <th >Product</th>
+                            <th >Quantity</th>
+                            <th >Total</th>
+                            <th >Status</th>
+                        </thead>
+                            <tbody>
+                                <% order.forEach(data => { %>
+                                    <tr>
+                                        <td id="item-name">
+                                            <div >
+                                            <% data.items.forEach(item => { %>
+                                                <p class="table-data2"><%- item.name %></p>
+                                            <% }) %>
+                                            </div>
+                                        </td>
+
+                                        <td class="quantity">
+                                            <div>
+                                            <% data.items.forEach(item => { %>
+                                                <p class="table-data2"><%- item.quantity %></p>
+                                            <% }) %>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div>
+                                                <p class="table-data2"><%- data.total_amount %></p>
+                                            </div>
+                                        </td>
+
+                                        <td class="status">
+                                            <div>
+                                            <p class="table-data2"><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()); %></p>
+                                            <% if(data.status == 'pending') { %>
+                                                <form action="/user/order/<%- data.id %>" method="POST">
+                                                    <div>
+                                                        <select name="reason" id="" required>
+                                                            <option value="" disabled selected>Select reason</option>
+                                                            <option value="Unmatched Reference">Unmatched Reference</option>
+                                                            <option value="Not Related Image">Not Related Image</option>
+                                                        </select>
+                                                    </div>
+                                                    <button class="cancel-btn">cancel</button>
+                                                </form>
+                                                <% } %>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                    </table>
+                    <% if(order == false) { %>
+                        <p class="no-order">No order yet</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <!-- Body container -->
+    </div>
+    <!-- Main container -->
+   
+    <%- include('include/footer') %>
+</body>
+</html>
+

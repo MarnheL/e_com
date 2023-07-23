@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/admin/inventory/<%- data.id %>/remove-item" method="POST">
+        <div class="mb-3">
+            <label for="Reason" class="col-form-label">Reason:</label>
+                <div>
+                    <input class="form-check-input" name="reason" type="radio" value="Damaged" id="flexCheckDefault" required>
+                    <label class="form-check-label" for="flexCheckDefault">Damaged</label>
+                    <input class="form-check-input" name="reason" type="radio" value="Expired" id="flexCheckDefault" required>
+                    <label class="form-check-label" for="flexCheckDefault">Expired</label>
+                    <input class="form-check-input" name="reason" type="radio" value="Mistyped" id="flexCheckDefault" required>
+                    <label class="form-check-label" for="flexCheckDefault">Mistyped</label>
+                </div>
+        </div>
+        <div class="mb-3">
+            <label for="stock_number" class="col-form-label">Number of stock to be removed:</label>
+            <input type="number" class="form-control" id="stock_number" name="quantity" required max="<%- data.product_stock %>">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <a href="/admin/inventory/<%- data.id %>/remove-item"><button type="button" class="btn btn-primary">Save changes</button></a> -->
+            <button class="btn btn-primary">Save changes</button>
+            <!-- <form action="/admin/inventory/<%- data.id %>/remove-item" method="POST">
+                <button class="btn btn-primary">Save changes</button>
+            </form> -->
+        </div>
+    </form>
+</body>
+</html>

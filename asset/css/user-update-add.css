@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+.products-page-container{
+    height: 100%;
+    min-height: 100vh;
+    
+}
+.body-content{
+    background-color: lightblue;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form{
+
+    width: 100%;
+    text-align: center;
+}
+
+.house_num, .zipcode{
+    font-size: 25px;
+    font-weight: 600;
+}
+.house_num input{
+    width: 50%;
+    width: 20%;
+    font-size: 17px;
+    padding-left: 10px;
+}
+.zipcode input{
+    width: 50%;
+    width: 20%;
+    font-size: 17px;
+    padding-left: 10px;
+}
+
+select{
+    width: 20%;
+    font-size: 17px;
+    font-weight: 500;
+
+}
+
+.update-btn{
+    margin-top: 20px;
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.exit-btn{
+    margin-top: 20px;
+    padding: 5px 15px;
+    border: 1px solid;
+    border-color: #8B0000;
+    border-radius: 5px;
+    background-color: #8B0000;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/order-summ.css">
+<%- include('include/head') %>
+    <title>Home</title>
+</head>
+<body>
+    <div class="page-container1">
+        <%- include('include/nav') %>
+        <div class="qo-summary-container">
+            <form action="/multi-order-summary/<%- id %>/order-details" method="POST" enctype="multipart/form-data">
+                <div class="info-1">
+                    <div class="qo-order-information">
+                        <h2>Order Information</h2>
+                        
+                        <div class="personal-info">
+                        <h4>Personal Information</h4>
+                            <input type="text" class="input1" id="firstname" name="firstname" value="<%- order.firstname %>" >
+                            <input type="text" class="input1" id="middlename" name="middlename" value="<%- order.middlename %>" >
+                            <input type="text" class="input1" id="lastname" name="lastname" value="<%- order.lastname %>" >
+                        </div>
+                        <div class="contacts">
+                            <input class="input-contacts" type="tel" class="input1" name="contact_number" value="<%- order.contact_number %>" >
+                        </div>
+                        <div class="address">
+                        <h4>Address</h4 >
+                            <input class="input-province" type="text" name="province" value="<%- order.province %>" >
+                            <input class="input-city" type="text"  name="city" value="<%- order.city %>" >
+                            <input class="input-brgy" type="text"  name="barangay" value="<%- order.barangay %>" >
+                            <input class="input-zip" type="number" name="zip_code" id="zip_code" placeholder="Zip Code" value="<%- order.zip_code %>" >
+                            <input class="input-house" type="text" name="house_no" id="house_no" placeholder="House Number/Street" value="<%- order.house_no %>" >
+                        </div>  
+                    </div>
+                    <div class="qo-mop">
+                        <div>
+                            <h2>Mode of Payment</h2>
+                        </div>
+                        <div class="gcash">
+                            <input type="radio" id="GCash" name="payment_method" onclick="gGash()" id="gcash" value="GCash" required>
+                            <label for="GCash">Gcash</label>
+                        </div>
+                        <input class="file" type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
+                    </div>
+                </div>
+                <div class="info-2">
+                    <div class="cont-1">
+                        <table class="table1" >
+                            <thead>
+                                <tr class="col-0">
+                                    <th class="headerbg">Product</th>
+                                    <th class="headerbg">Quantity</th>
+                                    <th class="headerbg">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% order.item.forEach((item, index) => { %>
+                                    <tr class="col-1">
+                                        <td>
+                                            <div>
+                                                <img src="/<%- item.img_name %>" alt="" style="width: 70px; height: 70px;">
+                                            </div>
+                                            <div class="prodname-container">
+                                                <p class="aw"><%- item.product_name %></p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="quantity-container">
+                                                <!-- <button  type="button" onclick="decrement()"><i class="fa-solid fa-minus fa-lg"></i></button> -->
+                                                <a href="/multi-order-summary/<%- id %>/minus/<%- item.product_id %>"><i class="fa-solid fa-minus fa-lg"></i></a>
+                                                <input type="number" id="quantity" class="quantity" name="quantity" min="1" max="<%- item.product_stock %>" readonly value="<%- item.product_quantity %>">
+                                                <a href="/multi-order-summary/<%- id %>/add/<%- item.product_id %>"><i class="fa-solid fa-plus"></i></i></a>
+                                                <!-- <button type="button" onclick="increment()"><i class="fa-solid fa-plus"></i></button> -->
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input class="price product_price" type="number" id="product_price" value="<%- item.product_price %>"  disabled="disabled">
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <% if(order.item == '') { %>
+                            <p>No item</p>
+                            <a href="/product/<%- id %>/remove-order">Go to Products</a>
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <table >
+                        <tr class="tr2">
+                            <td class="total">Shipping Fee</td>
+                            <td > <input class="price" type="number" id="shipping_fee" name="shipping_fee" value="<%- shipping_fee %>" readonly></td>
+                        </tr>
+                        <tr class="tr2" style="display: none;">
+                            <td class="sub_total">Sub Total </td>
+                            <td ><input class="price" type="number" id="sub_total" name="sub_total" value="0" readonly></td>
+                        </tr>
+                        <tr class="tr2">
+                            <td class="total">Total </td>
+                            <td ><input class="price" type="number" id="total" name="total" value="0" readonly></td>
+                        </tr>
+                    </table>
+                    <div class="btns">
+                        <button onclick="myFunction()" class="orderbtn">Place Order</button>
+                        <input class="back" type="button" value="Back" onclick="history.back()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('include/footer') %>
+</body>
+    <script>
+        let quantity = document.getElementsByClassName('quantity')
+        let product_price = document.getElementsByClassName('product_price')
+        let total = 0
+        for(let a = 0; a < quantity.length; a++){
+            total = total + (parseInt(quantity[a].value) * parseInt(product_price[a].value))
+        }
+        let shipping_fee = parseInt(document.getElementById('shipping_fee').value)
+        console.log(total + shipping_fee)
+        parseInt(document.getElementById('sub_total').value = total)
+        parseInt(document.getElementById('total').value = total + shipping_fee)
+    </script>
+    <script>
+        function cod(){
+        document.getElementById('image').style.display = 'none'
+        document.getElementById('image').required = false
+        }
+        function gGash(){
+        document.getElementById('image').style.display = 'block'
+        document.getElementById('image').required = true
+        }
+    </script>
+</html>

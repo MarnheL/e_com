@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    width: 100%;
+}
+
+.page-container1{
+    height: 100%;
+    min-height: 100vh;
+  }
+
+.qo-summary-container{
+
+    height: 100%;
+    min-height: 100vh;
+}
+
+
+.info-1{
+  width: 90%;
+  display: flex;
+  position: relative;
+  left: 5%;
+  margin-top: 5%;
+  
+    
+}
+.qo-order-information{
+    position: relative;
+    width: 60%;
+    border: 3px solid #4267B2;
+    font-size: 1em;
+    font-weight: 500;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+   
+}
+.qo-order-information p{
+  padding-top: 3px;
+  font-size: 1rem;
+}
+.qo-mop{
+    position: relative;
+    left: 1%;
+    width: 35%;
+    border: 3px solid #4267B2;
+    
+    
+    
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+
+    
+    
+}
+.info-2{
+    margin-top: 50px;
+    margin-bottom: 100px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 5%;
+}
+.table1 {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+.table1 thead{
+    background-color: #0A2647;
+}
+
+.headerbg{
+    padding: 10px 10px;
+    font-size: 17px;
+    color: #fff;
+    font-weight: 500;
+   
+}
+.col-1 td{
+    padding-top: 3%;
+}
+
+.quantity-container button{
+    padding: 3px 3px;    
+    border-color: transparent;
+    color: #000000;
+    font-size: 15px;
+    cursor: pointer; 
+    background-color: transparent;
+}
+
+.quantity-container input{
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    text-align: center;
+    width: 100%;
+   
+    
+    
+}
+.price{
+    background-color: transparent;
+    border: 0px solid;
+    font-size: 1rem;
+    outline: none;
+    text-align: center;
+    width: 50%;
+   
+  
+  
+}
+
+
+
+.prodname-container{
+    display: inline-block;
+    margin-top: 2%;
+    
+}
+#quantity{
+    text-align: center;
+    font-size: 17px;
+    width: 10%; 
+}
+
+
+/* Shipping fee */
+
+.col-2{
+    width: 90%;
+    position: relative;
+    left: 5%;
+
+    display: inline-block;
+  
+   
+}
+
+.col-2 table{
+    
+    position: relative;
+    left: 67.5%;
+    
+}
+.col-2 table td{
+    text-align: rig;
+    padding-top: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+}
+.total{
+    
+    text-align: right;
+}
+
+.btns{
+    margin-top: 10%;
+    /* border: 3px solid black; */
+    position: relative;
+    left: 67%;
+    width: 30%;
+    margin-bottom: 10px;
+    
+    
+   
+}
+
+
+.orderbtn{
+    padding: 10px 20px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 1rem;
+    cursor: pointer;
+    
+    
+}
+.btns input{
+    padding: 10px 20px;
+    border: 1px #e31818;
+    border-color: #000000;
+    border-radius: 5px;
+    background-color: #e31818;
+    color: #f2f2f2;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* quick order */
+
+.qo-order-information input{
+    padding-left: 5px;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.personal-info input{
+    border: none;
+    outline: none;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid 	#899499;
+    width: auto;
+    pointer-events: none;
+    
+}
+.contacts input{
+  
+    width: 24.4%;
+    border: none;
+    outline: none;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid 	#899499;
+    width: 45%;
+    pointer-events: none;
+}
+
+
+.address input{
+    border: none;
+    outline: none;
+    letter-spacing: 0.5px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid 	#899499;
+    pointer-events: none;
+    width: 45%;
+ 
+}
+
+
+@media (max-width: 1000px) {
+
+
+.info-1{
+
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+    
+}
+
+
+.qo-order-information{
+    width: 95%;
+    margin-bottom: 20px;
+   
+}
+
+
+.qo-mop{
+    width: 45%;
+    position: relative;
+    left: 0;
+}
+
+.qo-order-information h2{
+    font-size: 1rem;
+}
+.qo-order-information p{
+    font-size: 0.8rem;
+}
+.qo-mop h2{
+    font-size: 1rem;
+    
+}
+
+.qo-mop label{
+    font-size: 0.8rem;
+    
+   
+}
+
+
+.info-2 th{
+    width: 30%;
+}
+.quantity-container input{ 
+   padding: 0;
+}
+.quantity-container button{
+    padding: 1;
+}
+
+
+
+.cont-1 th{
+    font-size: 0.8rem;
+}
+.cont-1 td{
+    font-size: 0.8rem;
+   
+}
+
+
+.col-2 table{
+    
+    position: relative;
+    left: 50%;
+    width: 50%;
+}
+.col-2 table td{
+    position: relative;
+    left: 20%;
+    
+    font-size: 0.8rem;
+}
+
+.btns{
+   
+    width: 30%;
+    margin-bottom: 0;
+    display: inline-block;
+  
+    margin-bottom: 20px;
+    
+}
+.orderbtn{
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    
+    
+}
+.btns input{
+    padding: 5px 15px;
+    font-size: 0.8rem;
+    
+    
+}
+
+
+.file{
+
+    font-size: 0.7rem;
+    margin: 0;
+    padding: 0;
+}
+/* quick order */
+.personal-info input{
+  
+    font-size: 0.8rem;
+}
+.contacts input{
+ 
+    font-size: 0.8rem;
+}
+
+.address{
+
+    display: flex;
+    flex-direction: column;
+   
+}
+.address input{
+ 
+    font-size: 0.8rem;
+}
+.personal-info {
+ 
+    display: flex;
+    flex-direction: column;
+}
+.personal-info input{
+    
+    width: 90%;
+}
+
+.contacts input{
+    
+    width: 90%;
+}
+.address input{
+   
+    width: 90%;
+}
+
+
+
+
+}
+
