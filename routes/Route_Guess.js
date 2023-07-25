@@ -10,9 +10,9 @@ const shippingFees = require('../middleware/ship')
 const cloudinary = require('../controller/imageUploader');
 
 const Storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads');
-    },
+    // destination: (req, file, cb) => {
+    //     cb(null, 'uploads');
+    // },
     filename: (req, file, cb) => {
         cb(null, Date.now() + path.extname(file.originalname))
     },
