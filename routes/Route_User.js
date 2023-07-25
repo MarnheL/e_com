@@ -317,6 +317,8 @@ router.route('/cart/place-order')
         .then(() => console.log(order))
         .catch(err => console.log(err.message))
     }else{
+        const result = await cloudinary.uploader.upload(req.file.path)
+        // console.log(result)
         const order = await Order({
             order_type: 'USER',
             fullname: `${res.locals.user.firstname} ${res.locals.user.middlename} ${res.locals.user.lastname}`,
@@ -331,11 +333,11 @@ router.route('/cart/place-order')
             province: res.locals.user.province,
             contact_number: res.locals.user.contact_number,
             payment_method: payment_method,
-            img_name: req.file.filename,
-            image: {
-                data: fs.readFileSync('uploads/' + req.file.filename),
-                contentType: 'image/png'
-            }
+            img_name: result.secure_url,
+            // image: {
+            //     data: fs.readFileSync('uploads/' + req.file.filename),
+            //     contentType: 'image/png'
+            // }
         })
         order.save()
         .then(() => console.log(order))

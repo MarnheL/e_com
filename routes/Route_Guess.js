@@ -221,6 +221,7 @@ router.route('/cart/:id/remove')
 router.route('/cart/place-order')
 .post(checkGuess, upload.single('image'), async (req, res) => {
     const id = res.locals.guess.user_id;
+    const result = await cloudinary.uploader.upload(req.file.path)
     const payment_method = req.body.payment_method;
     const cart = await ShoppingCart.findOneAndDelete({user_id: id}).populate('items')
     console.log(cart.items)
@@ -258,11 +259,11 @@ router.route('/cart/place-order')
         province: res.locals.guess.province,
         contact_number: res.locals.guess.contact_number,
         payment_method: payment_method,
-        img_name: req.file.filename,
-        image: {
-            data: fs.readFileSync('uploads/' + req.file.filename),
-            contentType: 'image/png'
-        }
+        img_name: result.secure_url,
+        // image: {
+        //     data: fs.readFileSync('uploads/' + req.file.filename),
+        //     contentType: 'image/png'
+        // }
     })
     order.save()
     .then(() => {

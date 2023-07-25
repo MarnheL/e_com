@@ -95,10 +95,8 @@ router.route('/inventory/add-product')
 .post(upload.single('image'), async(req, res) => {
     const { product_name, product_price, product_category, product_stocks } = req.body;
 
-    // return res.send(req.file);
     const result = await cloudinary.uploader.upload(req.file.path)
     console.log(result)
-    // cloudinary.v2.uploader.upload(req.file.path, { public_id: "olympic_flag" }, function(error, result) {console.log(result); });
     
     const create = await Product({
         product_name: product_name,
