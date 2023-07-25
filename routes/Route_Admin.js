@@ -226,14 +226,15 @@ router.route('/inventory/:id/update-product-image')
     const id = req.params.id;
     const options = {new: true};
     try {
+        const result = await cloudinary.uploader.upload(req.file.path)
         const update_product = await Product.findByIdAndUpdate(id, {
-            img_name: req.file.filename,
-            image: {
-                data: fs.readFileSync('uploads/' + req.file.filename),
-                contentType: 'image/png'
-            }
+            img_name: result.secure_url,
+            // image: {
+            //     data: fs.readFileSync('uploads/' + req.file.filename),
+            //     contentType: 'image/png'
+            // }
         }, options);
-        console.log(update_product.img_name)
+        // console.log(update_product.img_name)
         const cart = await ShoppingCart.find()
         cart.forEach(data => {
             let itemIndex = data.items.findIndex(p => p.product_id == id)
