@@ -22,7 +22,12 @@
                     <p><span class="details">Fullname:</span> <%- order.fullname %></p>
                     <p><span class="details">Contacts:</span><%- order.contact_number %></p>
                     <p><span class="details">Delivery Address:</span> <%- order.address %></p>
-                    <p><span class="details">Order:</span> <%- order.items[0].name %></p>
+                    <p>
+                        <span class="details">Order:</span>
+                        <% order.items.forEach(data => { %>
+                            <div> - <%- data.name %></div>
+                        <% }); %>
+                    </p>
                     <p><span class="details">Total:</span> <%- order.total_amount %></p>
                     <p class="details">Estimated Time Arrival: 1 to 2 hrs</p>
             </div>
