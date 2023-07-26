@@ -59,9 +59,41 @@
                                     <a class="buy-now-btn1" href="/order-summary/<%- data.id %>/confirm">Buy Now</a>
 
                                     <!-- eto yung add to cart natin -->
-                                    <form action="/product/<%- data.id %>/add-to-cart" method="POST">
-                                        <input type="number" name="quantity" value="1">
-                                        <button>Add to cart</button>
+                                    <a class="add-to-cart-btn1" id="cartBtn<%- index %>" data-modal-target="#modal<%- data.id %>"><i class="fa-sharp fa-solid fa-cart-plus fa-sm"></i>Add to cart</a>
+                                    <div class="modal" id="modal<%- data.id %>">
+                                        <div class="modal-header">
+                                        <div class="title">Add to Cart</div>
+                                        <a data-close-button class="close-button">&times;</a>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container">
+                                                <div class="img-container">
+                                                    <img class="image-1" src="<%- data.img_name %>" >
+                                                </div>
+                                                <div class="">
+                                                    <ul>
+                                                        <li><%- data.product_name %></li>
+                                                        <li>Price: <%- data.product_price %></li>
+                                                        <li>Stocks: <%- data.product_stock %></li>
+                                                    </ul>
+                                                </div >
+                                            </div>
+                                            <form action="/product/<%- data.id %>/add-to-cart" method="POST">
+                                       
+                                                <div class="increment-cont">
+                                                    <!-- <span class="button" id="decrement"><i class="fa-solid fa-minus fa-sm"></i></span> -->
+                                                    <span>Quantity: </span><input type="number" name="quantity" value="1">
+                                                    <!-- <span class="button" id="increment"><i class="fa-solid fa-plus fa-sm"></i></span> -->
+                                                </div>                                          
+                                                <div class="done-cont">
+                                                <button class="done-btn"  id="cartBtn<%- index %>"></i>Add</button>
+                                                </div>
+                                            </form>
+                                           
+                                        </div>
+                                    </div>
+                                    <div id="overlay"></div>
+
                                     </form>
                                     <!-- eto yung add to cart natin -->
                                 </div>
@@ -118,13 +150,49 @@
     </script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script type="text/javascript">
-        $(".add-to-cart-btn1").click(function () {
-          alert("Added to Cart. Go to Cart to see your added products");
-        
+        $(".aone-btn").click(function () {
+          alert("Added to Cart. Go to Cart to see your added products");  
         });
-
-      
       </script>
+
+      <script>
+        const openModalButtons = document.querySelectorAll('[data-modal-target]')
+        const closeModalButtons = document.querySelectorAll('[data-close-button]')
+        const overlay = document.getElementById('overlay')
+
+        openModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+        })
+        })
+
+        overlay.addEventListener('click', () => {
+        const modals = document.querySelectorAll('.modal.active')
+        modals.forEach(modal => {
+            closeModal(modal)
+        })
+        })
+
+        closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal')
+            closeModal(modal)
+        })
+        })
+
+        function openModal(modal) {
+        if (modal == null) return
+        modal.classList.add('active')
+        overlay.classList.add('active')
+        }
+
+        function closeModal(modal) {
+        if (modal == null) return
+        modal.classList.remove('active')
+        overlay.classList.remove('active')
+        }
+    </script>
     
     </html>
 

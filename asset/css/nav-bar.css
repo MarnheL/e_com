@@ -21,7 +21,14 @@
   text-decoration: none;
   background-color: none;
   display: inline-block;
+
+
+
 }
+
+
+
+
 .dropdown {
   float: right;
   overflow: hidden;
@@ -90,12 +97,39 @@
   margin-right: 5px;
 }
 
+/* cart */
+.div-1 {
+  margin-top: 7px;   
+  display: flex;
+  justify-content: flex-end;
+  font-size: 17px;
+
+  /* border: 2px solid white; */
+ 
+
+}
+.div-1 a{
+  font-size: 17px;
+  font-weight: 100;
+  color: #fff;
+  /* background-color: red; */
+  margin: 0;
+  
+}
+
+
+
+
+
+
 /* signup */
 .sign-up {
   margin-top: 7px;   
   display: flex;
   justify-content: flex-end;
   font-size: 17px;
+
+  /* background-color: red; */
  
 
 }

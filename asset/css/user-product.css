@@ -148,6 +148,68 @@ div img{
 }
 
 
+/* Modal CSS */
+.done-cont{
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+}
+.done-btn{
+    padding: 5px 50px;
+    border: 1px solid;
+    border-color: #4267B2;
+    border-radius: 5px;
+    background-color: #4267B2;
+    color: #f2f2f2;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 3px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.increment-cont{
+    /* background-color: red; */
+    /* position: relative;
+    left: 2%; */
+     width: 50%;
+ 
+}
+.modal-body span{
+    cursor: pointer;
+   
+    padding: 0;
+
+
+    /* border: 2px solid black; */
+    
+}
+input {border:0;outline:0;}
+input:focus {outline:none!important;}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.modal-body input{
+    width: 30%;
+    text-align: center;
+    /* border: 1px solid black; */
+    border: 0;
+    border-bottom: 1px solid black;
+
+
+    
+}
+
+
+
 
 @media (max-width: 1000px) {
 .sort option{ 

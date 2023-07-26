@@ -57,7 +57,7 @@
                                         <div class="modal-body">
                                             <div class="container">
                                                 <div class="img-container">
-                                                    <img class="image-1" src="/<%- data.img_name %>" >
+                                                    <img class="image-1" src="<%- data.img_name %>" >
                                                 </div>
                                                 <div class="description-1">
                                                     <ul>
@@ -67,13 +67,24 @@
                                                     </ul>
                                                 </div >
                                             </div>
-
                                             <form action="/user/product/<%- data.id %>/add-to-cart" method="POST">
+                                                <div class="increment-cont">
+                                                    <!-- <span class="button" id="decrement"><i class="fa-solid fa-minus fa-sm"></i></span> -->
+                                                    <span>Quantity: </span><input type="number" id="quantity" value="1" name="quantity">
+                                                    <!-- <span class="button" id="increment"><i class="fa-solid fa-plus fa-sm"></i></span> -->
+                                                </div>                                          
+                                                <div class="done-cont">
+                                                <button class="done-btn"  id="cartBtn<%- index %>"></i>Add</button>
+                                                </div>
+                                              
+                                            </form>
+
+                                            <!-- <form action="/user/product/<%- data.id %>/add-to-cart" method="POST">
                                                 <span class="button" id="decrement"><i class="fa-solid fa-minus fa-lg"></i></span>
                                                 <input type="number" id="number" value="1" name="quantity">
                                                 <span class="button" id="increment"><i class="fa-solid fa-plus"></i></span>
                                                 <button class="add-to-cart-btn1"  id="cartBtn<%- index %>"></i>Done</button>
-                                            </form>
+                                            </form> -->
 
                                         </div>
                                     </div>

@@ -82,7 +82,7 @@
                               <!-- <a href=""><button>see attachment</button></a> -->
                               <div>
                                 <a href="/admin/order-status/<%- info.id %>">
-                                  <img src="<%- info.img_name %>" alt="" style="width: 50px; height: 50px;">
+                                  <img src="/<%- info.img_name %>" alt="" style="width: 50px; height: 50px;">
                                 </a>
                               </div>
                             <% } %>
@@ -118,7 +118,7 @@
                                 </div>
                                 <!-- Modal body -->
                                 <form action="/admin/order-status/<%- id %>/cancel" method="POST">
-                                  <div class="modal-body">
+                                  <div class="modal-body" id="">
                                     <!-- <label for="reason">Reason: </label>
                                     <select name="reason" id="reason">
                                       <option value="Out of Stock">Out of Stock</option>
@@ -130,33 +130,47 @@
                                     </select> -->
                                     <div>
                                       <label for="">Out of Stock</label>
-                                      <input type="radio" name="reason" value="Out of Stock" id="choiceOne">
+                                      <input type="radio" name="reason" value="Out of Stock" onclick="hideTextInput()">
                                     </div>
 
                                     <div>
                                       <label for="">Unmatched Reference</label>
-                                      <input type="radio" name="reason" value="Unmatched Reference" id="choiceTwo">
+                                      <input type="radio" name="reason" value="Unmatched Reference" onclick="hideTextInput()">
                                     </div>
 
                                     <div>
                                       <label for="">Not Related Image</label>
-                                      <input type="radio" name="reason" value="Not Related Image" id="choiceThree">
+                                      <input type="radio" name="reason" value="Not Related Image" onclick="hideTextInput()">
                                     </div>
 
                                     <div>
                                       <label for="">Cannot Process Order</label>
-                                      <input type="radio" name="reason" value="Cannot Process Order" id="choiceFour">
+                                      <input type="radio" name="reason" value="Cannot Process Order" onclick="hideTextInput()">
                                     </div>
 
                                     <div>
                                       <label for="">Other</label>
-                                      <input type="radio" name="reason" onclick="myReason()" value="Other">
+                                      <input type="radio" name="reason" onclick="myReason()" value="Other" onclick="showTextInput()">
                                     </div>
-                                    <input type="text" name="other" style="display: none;" id="other">
+                                    <div id="reason-cont">
+                                    <input class="reason-input" type="text" name="other" style="display: none;" id="other" required="required">
+                                  </div>
+                                  
+                                    
                                     <script>
                                       function myReason(){
                                         document.getElementById('other').style.display = 'block'
                                       }
+
+                                      function showTextInput() {
+                                      var input = document.getElementById("other");
+                                      input.style.display = "block";
+                                    }
+
+                                    function hideTextInput() {
+                                      var input = document.getElementById("other");
+                                      input.style.display = "none";
+                                    }
                                     </script>
                                     <p>Are you sure you want to cancel this orders?</p>
                                   </div>

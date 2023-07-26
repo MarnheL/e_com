@@ -62,14 +62,23 @@
                                             <p class="table-data2"><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()); %></p>
                                             <% if(data.status == 'pending') { %>
                                                 <form action="/user/order/<%- data.id %>" method="POST">
-                                                    <div>
-                                                        <select name="reason" id="" required>
-                                                            <option value="" disabled selected>Select reason</option>
-                                                            <option value="Unmatched Reference">Unmatched Reference</option>
-                                                            <option value="Not Related Image">Not Related Image</option>
-                                                        </select>
-                                                    </div>
-                                                    <button class="cancel-btn">cancel</button>
+                                                    
+                                                    <button class="cancel-btn" id="cartBtn" data-modal-target="#modal<%- data.id %>">Cancel</button>
+                                                        <div class="modal" id="modal<%- data.id %>">
+                                                            <div class="modal-header">
+                                                            <div class="title"><span>Reason for cancelling</span>
+                                                                <a data-close-button class="close-button">&times;</a>
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            <div class="modal-body">
+                                                            
+                                                                <input type="text" name="reason" id="" required>
+                                                            </div>
+                                                        </div>
+                                                        <div id="overlay"></div>
+                                                   
+                                                    <!-- <button class="cancel-btn">cancel</button> -->
                                                 </form>
                                                 <% } %>
                                             </div>
@@ -90,5 +99,43 @@
    
     <%- include('include/footer') %>
 </body>
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+    })
+
+    overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
+    })
+
+    closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+    })
+
+    function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+    }
+</script>
 </html>
 

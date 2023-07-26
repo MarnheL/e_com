@@ -69,18 +69,22 @@ body{
     color: lightblue;
     font-size: 12px;
 }
-.login-box form a {
-    position: relative;
-    display: inline-block;
-    padding: 10px 20px;
-    color: #b79726; 
-    font-size: 16px;
+.login-box form a  {
+    display: flex;
+    margin: 10px 0;
+    justify-content: center;
+    
+    
+    color: #fff; 
+    font-size: 15px;
     text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: .5s;
-    margin-top: 40px;
-    letter-spacing: 4px
+  
+    
+    
+   
+
+    /* border: 2px solid black; */
+
 }
 
 .login-box label{

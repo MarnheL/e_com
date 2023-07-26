@@ -85,12 +85,12 @@
                         <div  class="address">
                             <label class="label-title" for="address">Address</label>
                             <input class="address-box" type="text" name="address" id="address" value="<%- guess.house_no %> <%- guess.zip_code %>  <%- guess.barangay %> <%- guess.city %> <%- guess.province %>" required readonly>
-                            <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                            <!-- <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a> -->
                         </div>
                         <div class="contact">
                             <label class="label-title" for="contact_number">Contact Number</label>
                             <input type="text" name="contact_number" id="contact_number" value="<%- guess.contact_number %>" readonly>
-                            <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a>
+                            <!-- <a href="/update-info"><i class="fa-solid fa-pen-to-square fa-xl"></i></a> -->
                         </div>
                         <form action="/cart/place-order" method="POST" enctype="multipart/form-data">
                             <div  class="gcash"> 
