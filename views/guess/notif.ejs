@@ -21,7 +21,7 @@
                 <h2>ORDER DETAILS</h2>
                     <p><span class="details">Fullname:</span> <%- order.fullname %></p>
                     <p><span class="details">Contacts:</span><%- order.contact_number %></p>
-                    <p><span class="details">Delivery Address:</span> <%- order.address %></p>
+                    <p><span class="details">Delivery Address:</span> <%- order.house_no %> <%- order.barangay %> <%- order.zip_code %> <%- order.city %> <%- order.province %></p>
                     <p>
                         <span class="details">Order:</span>
                         <% order.items.forEach(data => { %>

@@ -374,63 +374,44 @@ router.route('/order-summary/:id')
 })
 .post(upload.single('image'), async(req, res) => {
     const id = req.params.id;
+    console.log(req.body);
     const product = await Product.findById(id)
-    if(req.body.payment_method == 'COD'){
-        let shipping_fee = 0
-        let sub_total = product.product_price * req.body.quantity
-        let total_amount = sub_total + shipping_fee
-        const order = await Order({
-            order_type: 'GUEST',
-            fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-            items: [{
-                product_id: id,
-                name: product.product_name,
-                price: product.product_price,
-                quantity: req.body.quantity
-            }],
-            sub_total: sub_total,
-            total_amount: total_amount,
-            address: `${req.body.house_no} ${req.body.barangay} ${req.body.zip_code} ${req.body.city} ${req.body.province}`,
-            contact_number: req.body.contact_number,
-            payment_method: req.body.payment_method
-        })
-        order.save()
-        .then(() => console.log(order))
-        res.redirect(`/check-point/${order.id}`)
-    }else{
-        const result = await cloudinary.uploader.upload(req.file.path)
+    const result = await cloudinary.uploader.upload(req.file.path)
 
-        let shipping_fee = 0
-        let sub_total = product.product_price * req.body.quantity
-        let total_amount = sub_total + shipping_fee
-        const order = await Order({
-            order_type: 'GUEST',
-            fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
-            // user_id: 'none',
-            items: [{
-                product_id: id,
-                name: product.product_name,
-                price: product.product_price,
-                quantity: req.body.quantity
-            }],
-            sub_total: sub_total,
-            total_amount: total_amount,
-            address: `${req.body.house_no} ${req.body.barangay} ${req.body.zip_code} ${req.body.city} ${req.body.province}`,
-            contact_number: req.body.contact_number,
-            payment_method: req.body.payment_method,
-            // img_name: req.file.filename,
-            img_name: result.secure_url,
-            // image: {
-            //     data: fs.readFileSync('uploads/' + req.file.filename),
-            //     contentType: 'image/png'
-            // }
-        })
-        order.save()
-        .then(() => {
-            console.log(order)
-            res.redirect(`/check-point/${order.id}`)
-        })
-    }
+    let shipping_fee = 0
+    let sub_total = product.product_price * req.body.quantity
+    let total_amount = sub_total + shipping_fee
+    const order = await Order({
+        order_type: 'GUEST',
+        fullname: `${req.body.firstname} ${req.body.middlename} ${req.body.lastname}`,
+        // user_id: 'none',
+        items: [{
+            product_id: id,
+            name: product.product_name,
+            price: product.product_price,
+            quantity: req.body.quantity
+        }],
+        sub_total: sub_total,
+        total_amount: total_amount,
+        house_no: req.body.house_no,
+        barangay: req.body.barangay,
+        zip_code: req.body.zip_code,
+        city: req.body.city,
+        province: req.body.province,
+        contact_number: req.body.contact_number,
+        payment_method: req.body.payment_method,
+        // img_name: req.file.filename,
+        img_name: result.secure_url,
+        // image: {
+        //     data: fs.readFileSync('uploads/' + req.file.filename),
+        //     contentType: 'image/png'
+        // }
+    })
+    order.save()
+    .then(() => {
+        console.log(order)
+        res.redirect(`/check-point/${order.id}`)
+    })
 })
 
 router.route('/check-point/:id')
