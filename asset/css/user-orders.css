@@ -72,13 +72,13 @@ body{
   position: absolute;
   top: 28%;
   left: 27%;
-  height: 60%;
+  
 
 }
-.table-wrapper thead th {
+/* .table-wrapper thead th {
   position: sticky;
   top: 0;
-}
+} */
 
 .table-wrapper th{
   padding-top: 10px;
@@ -95,6 +95,35 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+/* th id */
+#item-date{
+  width: 15%;
+  text-align: center;
+  font-weight: 100;
+}
+#th-product{
+  width: 20%;
+  text-align: center;
+  font-weight: 100;
+}
+#th-quantity{
+  /* background-color: red; */
+  text-align: center;
+  width: 10%;
+  font-weight: 100;
+}
+#th-total{
+  width: 15%;
+  text-align: center;
+  font-weight: 100;
+}
+#th-status{
+  /* width: 5%; */
+  text-align: center;
+  font-weight: 100;
+  width: 20%;
+}
+
 
 
 td {
@@ -107,14 +136,19 @@ td {
 .table-data2{
   text-align: center;
   margin-top: 5%;
-
+  /* background-color: red; */
 
 }
 
 #item-name p{
   text-align: justify;
-  margin-left: 30px;
+  margin-left: 20px;
 }
+
+
+
+
+
 .status form{
 
   text-align: center;

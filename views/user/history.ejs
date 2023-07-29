@@ -15,6 +15,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" type="text/css" href="/css/user-history.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <%- include('include/head') %>
     <title>History</title>
   </head>
@@ -34,51 +36,46 @@
         <!-- table -->
         <div class="column-1">
           <div class="table-wrapper">
-            <table>
+            <table id="example" class="display" style="width:100%">
               <thead>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Date</th>
+                <th id="th">Date</th>
+                <th id="th">Product</th>
+                <th id="th">Quantity</th>
+                <th id="th">Total</th>
+                <th id="th">Status</th>
+                <th id="th">Remarks</th>
+
+             
               </thead>
               <tbody>
                 <% order.forEach(data => { %>
                 <tr>
-                  <td class="td-product" id="item-name">
-                    <div>
-                      <% data.items.forEach(item => { %>
-                      <p class="table-data2"><%- item.name %></p>
-                      <% }) %>
-                    </div>
-                  </td>
-
-                  <td class="td-quantity">
-                    <div>
-                      <% data.items.forEach(item => { %>
-                      <p class="table-data2"><%- item.quantity %></p>
-                      <% }) %>
-                    </div>
-                  </td>
-
                   <td>
-                    <p class="table-data2"><%- data.total_amount %></p>
+                    <%- data.date_ordered.toISOString().slice(0,10) %>
+                  </td>
+                  <td >
+                      <% data.items.forEach(item => { %>
+                      <p><%- item.name %></p>
+                      <% }) %>
+                  </td>
+                  <td>
+                      <% data.items.forEach(item => { %>
+                      <p><%- item.quantity %></p>
+                      <% }) %>
+                  </td>
+                  <td>
+                    <p><%- data.total_amount %></p>
                   </td>
 
-                  <td class="td-status">
-                    <p class="table-data2"><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()); %>
+                  <td >
+                    <p ><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) ; %>
                      <% if(data.status == 'cancelled') { %>
-                      <span class="">- <%- data.reason %></span>
                     <% } %></p>
-                   
                   </td>
-                  <td id="item-date">
-                    <div>
-                      <p class="table-data2">
-                        <%- data.date_ordered.toISOString().slice(0,10) %>
-                      </p>
-                    </div>
+                  <td>
+                    <p ><%- data.reason %></p>
                   </td>
+                 
                 </tr>
                 <% }) %>
               </tbody>
@@ -95,4 +92,16 @@
     <!-- Body container -->
     <%- include('include/footer') %>
   </body>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+  <script>
+    $('#example').DataTable({
+      paging: false,
+      scrollCollapse: true,
+      scrollY: '200px',
+      responsive: true
+      
+      });
+      
+  </script>
 </html>
