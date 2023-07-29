@@ -1,6 +1,7 @@
 
 <%- include('include/head') %>
-  <title>History-Cancelled</title>
+  <title>History-Cancelled</title>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -59,7 +60,7 @@
               <div class="fs-4 mb-5"></div>
             </div>
               <!-- TABLE WITH USERS DATA -->
-              <table class="table table-hover text-center bg-white">
+              <table class=" display table table-hover text-center bg-white" id="example"  style="width:100%">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Name</th>
@@ -139,6 +140,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/admin.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $('#example').DataTable();
+      
+    </script>
 </body>
 
 </html>

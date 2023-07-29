@@ -72,6 +72,9 @@
 }
 
 /* order status */
+div.container {
+  width: 100%;
+}
 
 #pending-name{
   width: 5%;
@@ -80,26 +83,38 @@
 #pending-address{
   width:10%
 }
+
+#order{
+  width: 17%;
+  text-align: center;
+}
+/* #quantity{
+  
+} */
+#date{
+  width: 5%;
+  text-align: center  ;
+}
+
+
+
 #name{
   width: 10%;
 }
 
 
 #address{
-  width:15%
+  width:10%;
+  text-align: center;
+  
 }
 
 
-#date{
-  width: 14.28%;
-}
 
-#item-name{
-  width: 14.28%;
-}
-#quantity{
-  width: 14.28%;
-}
+/* #item-name{
+
+} */
+
 #subtotal{
   width: 14.28%;
 }
@@ -115,6 +130,10 @@
 #view{
  
   color: #fff;
+}
+
+#action{
+  text-align: center;
 }
 
 

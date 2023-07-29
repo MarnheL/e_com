@@ -162,3 +162,26 @@ body{
     
 
 }
+
+.col-4{
+    /* border: 3px solid black; */
+    padding: o;
+    margin: 0;
+    
+}
+.col-4 span{
+    
+    padding: o;
+    margin: 0;
+
+    font-size: 10px;
+}
+.col-4 a{ 
+    padding: o;
+    margin: 0;
+    font-size: 10px;
+    text-decoration: none;
+    color: #f2f2f2;
+    font-style: italic;
+
+}

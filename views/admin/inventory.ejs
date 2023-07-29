@@ -1,6 +1,7 @@
 
 <%- include('include/head') %>
     <title>Inventory</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 </head>
 <body>
     <div class="d-flex" id="wrapper">
@@ -43,14 +44,14 @@
                 <a href="/admin/archive" class="btn btn-dark "><i class="bi bi-archive-fill pe-1 fa-2xs"></i>Archive</a>
            </div>
             <div class="navbar-nav navbar-dark position-relative mt-5">
-                <table class="table table-hover bg-white rounded text-center">   
+                <table id="example" class="display table table-hover bg-white rounded text-center" style="width:100%"> 
                     <thead class="table-dark">
                         <tr >
-                            <th scope="col">ID</th>
-                            <th scope="col">Product Image</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Stocks</th>
-                            <th scope="col">Actions</th>
+                            <th class="text-center" scope="col">ID</th>
+                            <th class="text-center" scope="col">Product Image</th>
+                            <th class="text-center" scope="col">Product Name</th>
+                            <th class="text-center" scope="col">Stocks</th>
+                            <th class="text-center" scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -159,5 +160,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/admin.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#example').DataTable({
+            info: false,
+            ordering: false,
+            paging: false
+        });
+    </script>
 </body>
 </html>

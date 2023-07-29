@@ -1,6 +1,7 @@
 
 <%- include('include/head') %>
   <title>Ongoing Orders</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -59,21 +60,21 @@
               <div class="fs-4 mb-5"></div>
             </div>
               <!-- TABLE WITH USERS DATA -->
-              <table class="table table-hover text-center bg-white">
+              <table class=" display table table-hover text-center bg-white" id="example"  style="width:100%">
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Contact#</th>
-                        <th scope="col">Order</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">MOP</th>
-                        <th scope="col">SubTotal</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Action</th>
+                      <th scope="col">Name</th>
+                      <th id="address">Address</th>
+                      <th scope="col">Contact #</th>
+                      <th id="order" scope="col">Order</th>
+                      <th id="quantity" scope="col">Quantity</th>
+                      <th id="date" scope="col">Date</th>
+                      <th scope="col">MOP</th>
+                      <th scope="col">SubTotal</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Type</th>
+                      <th id="action" scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -155,6 +156,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/admin.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+      $('#example').DataTable();
+      
+    </script>
 </body>
 
 </html>
