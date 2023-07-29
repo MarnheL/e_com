@@ -21,7 +21,7 @@
                 <h2>ORDER DETAILS</h2>
                     <p><span class="details">Fullname:</span> <%- order.fullname %></p>
                     <p><span class="details">Contacts:</span><%- order.contact_number %></p>
-                    <p><span class="details">Delivery Address:</span> <%- order.address %></p>
+                    <p><span class="details">Delivery Address:</span> <%- order.house_no %> <%- order.barangay %> <%- order.zip_code %> <%- order.city %> <%- order.province %></p>
                     <p>
                         <span class="details">Order:</span>
                         <% order.items.forEach(data => { %>
@@ -33,10 +33,9 @@
             </div>
             <div class="form-input">
                 <h2>Reminders</h2>
-                <p class="reminders">This is only a one time notification since you ordered through quick order.
-                You wont be able to track your order though our website and we will be contacting 
-                you through your provided contact number. If ever you want an update with your order 
-                you can contact us with the number provided at the ABOUT section. Thank you for your purchase!
+                <p class="reminders">This is only a one-time notification since you ordered through Quick Order.
+                    You won't be able to track your order through our website, and we will be contacting
+                    you through your provided contact number. If ever you want an update on your order, you can contact us at the number provided in the footer section. Thank you for your purchase!
                 </p>
             </div>
 

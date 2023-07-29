@@ -275,7 +275,7 @@ input[type=number] {
 .title span{
   font-weight: 100;
   font-size: 1rem;
-  /* background-color: red; */
+  /* background-color: red; */ 
 }
 
 @media (max-width: 1000px) {
