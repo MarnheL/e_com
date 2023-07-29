@@ -70,7 +70,7 @@ body{
   width: 60%;
   overflow-x: auto;
   position: absolute;
-  top: 28%;
+  top: 25%;
   left: 27%;
   
 
@@ -133,9 +133,15 @@ td {
   font-size: 1rem;
   
 }
+td p{
+  line-height: 2;
+  
+}
+
+
 .table-data2{
   text-align: center;
-  margin-top: 5%;
+
   /* background-color: red; */
 
 }

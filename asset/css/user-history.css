@@ -86,7 +86,7 @@ body {
   width: 60%;
   overflow-x: auto;
   position: absolute;
-  top: 28%;
+  top: 25%;
   left: 27%;
   height: 60%;
 
@@ -114,47 +114,36 @@ table {
   border-collapse: collapse;
 }
 
+
 #th{
-
+  /* border: 1px solid white; */
   text-align: center;
+  font-weight: 100;
 }
-
 
 td {
  
   border-bottom: 1px solid #C7C7C7;
-  text-align: justify;
-  font-size: 1rem;
-  
-  
-}
-
-.td-product{
-  /* background-color: lightblue; */
-  width: 25%;
-}
-
-.td-quantity{
-  /* background-color: lightpink; */
-  
-}
-.td-status{
-  /* background-color: red; */
-  width: 30%;
-}
-
-.table-data2{
   text-align: center;
-  margin-top: 5%;
-
-
+  font-size: 1rem;
+ 
+  
 }
 
-#item-name p{
+.td{
+  
   text-align: justify;
-  margin-left: 20px;
 }
 
+td p{
+  line-height: 2;
+  
+}
+
+
+.quantity{
+  text-align: center;
+}
 .outer-wrapper {
   min-height: 100%;
   background-color: red;

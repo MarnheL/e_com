@@ -51,29 +51,29 @@
                 <% order.forEach(data => { %>
                 <tr>
                   <td>
-                    <%- data.date_ordered.toISOString().slice(0,10) %>
+                    <p class="quantity"><%- data.date_ordered.toISOString().slice(0,10) %></p>
                   </td>
                   <td >
                       <% data.items.forEach(item => { %>
-                      <p><%- item.name %></p>
+                      <p class="td"><%- item.name %></p>
                       <% }) %>
                   </td>
                   <td>
                       <% data.items.forEach(item => { %>
-                      <p><%- item.quantity %></p>
+                      <p class="quantity"><%- item.quantity %></p>
                       <% }) %>
                   </td>
                   <td>
-                    <p><%- data.total_amount %></p>
+                    <p class="quantity"><%- data.total_amount %></p>
                   </td>
 
                   <td >
-                    <p ><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) ; %>
+                    <p class="quantity" ><%- data.status.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()) ; %>
                      <% if(data.status == 'cancelled') { %>
                     <% } %></p>
                   </td>
                   <td>
-                    <p ><%- data.reason %></p>
+                    <p class="quantity"><%- data.reason %></p>
                   </td>
                  
                 </tr>
@@ -95,13 +95,11 @@
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
   <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
   <script>
-    $('#example').DataTable({
-      paging: false,
-      scrollCollapse: true,
-      scrollY: '200px',
-      responsive: true
-      
-      });
+     $('#example').DataTable({
+    paging: false,
+    scrollCollapse: true,
+    scrollY: '300px'
+    });
       
   </script>
 </html>
