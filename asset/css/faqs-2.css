@@ -49,7 +49,9 @@ body{
 
 }
 
-
+.faqs2-img2{
+  width: 40%;
+}
 .faqs2-img3{
   width: auto;
   height: 300px;
@@ -58,8 +60,10 @@ body{
  
 
 }
-
-.faqs2-img5,.faqs2-img4{
+.faqs2-img4{
+  width: 10%;
+}
+.faqs2-img5{
   
   width: auto;
   height: 400px;
@@ -68,6 +72,7 @@ body{
 
 
 }
+
 
 @media (max-width:1000px){
   .faqs2-body-container h1{
