@@ -54,11 +54,10 @@
                                         </td>
 
                                         <td class="quantity">
-                                            <div>
                                             <% data.items.forEach(item => { %>
                                                 <p class="table-data2"><%- item.quantity %></p>
                                             <% }) %>
-                                            </div>
+                                         
                                         </td>
 
                                         <td>
@@ -112,10 +111,10 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 <script>
-   $('#example').DataTable({
-    paging: false,
-    scrollCollapse: true,
-    scrollY: '300px'
+    $('#example').DataTable({
+        paging: false,
+        scrollCollapse: true,
+        scrollY: '300px'
     });
 </script>
 <script>
