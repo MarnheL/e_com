@@ -39,7 +39,7 @@
             <table id="example" class="display" style="width:100%">
               <thead>
                 <th id="th">Date</th>
-                <th id="th">Product</th>
+                <th class="product" id="th">Product</th>
                 <th id="th">Quantity</th>
                 <th id="th">Total</th>
                 <th id="th">Status</th>
@@ -53,12 +53,12 @@
                   <td>
                     <p class="quantity"><%- data.date_ordered.toISOString().slice(0,10) %></p>
                   </td>
-                  <td >
+                  <td id="item-name" >
                       <% data.items.forEach(item => { %>
                       <p class="td"><%- item.name %></p>
                       <% }) %>
                   </td>
-                  <td>
+                  <td >
                       <% data.items.forEach(item => { %>
                       <p class="quantity"><%- item.quantity %></p>
                       <% }) %>
@@ -98,7 +98,9 @@
      $('#example').DataTable({
     paging: false,
     scrollCollapse: true,
+    responsive: true,
     scrollY: '300px'
+   
     });
       
   </script>

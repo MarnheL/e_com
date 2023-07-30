@@ -91,67 +91,27 @@ body{
   text-align: center;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-/* th id */
-#item-date{
-  width: 15%;
-  text-align: center;
-  font-weight: 100;
-}
-#th-product{
-  width: 20%;
-  text-align: center;
-  font-weight: 100;
-}
-#th-quantity{
-  /* background-color: red; */
-  text-align: center;
-  width: 10%;
-  font-weight: 100;
-}
-#th-total{
-  width: 15%;
-  text-align: center;
-  font-weight: 100;
-
-  
-}
-#th-status{
-  /* width: 5%; */
-  text-align: center;
-  font-weight: 100;
-  width: 15%;
-}
 
 
-
-td {
- 
-  border-bottom: 1px solid #C7C7C7;
-  text-align: justify;
-  font-size: 1rem;
+table.fixed {
+  table-layout: fixed;
+}
+table, th, td{
+  background-color: white;
+}
+#th{
+  text-align: center;
+  font-weight: 100;
+}
+td{
   line-height: 2;
-}
-
-
-.table-data2{
   text-align: center;
-
-  /* background-color: red; */
-
 }
-
 #item-name p{
-  text-align: justify;
-
+  text-align:justify;
+  position: relative;
+  left: 20%;
 }
-
-
-
-
 
 .status form{
 
@@ -386,6 +346,7 @@ table th{
 table td{
  
   font-size: 0.8rem;
+  background-color: transparent;
 
 }
 .no-order {
@@ -426,7 +387,11 @@ table td{
 
 }
 
-
+@media (max-width: 1000px){
+  
+  
+  
+}
 
 
 
