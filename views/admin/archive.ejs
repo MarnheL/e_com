@@ -1,6 +1,7 @@
 
 <%- include('include/head') %>
     <title>Archieve</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
             </nav>
             <!-- BODY CONTENT -->
             <div class="navbar-nav navbar-dark position-relative mt-5">
-                <table class="table table-hover bg-white rounded text-center">   
+                <table class=" display table table-hover text-center bg-white" id="example"  style="width:100%"> 
                     <thead class="table-dark">
                         <tr >
                             <th  scope="col">ID</th>
@@ -78,5 +79,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/admin.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#example').DataTable( {
+            "ordering": false
+        } );
+      
+    </script>
 </body>
 </html>

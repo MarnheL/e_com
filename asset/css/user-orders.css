@@ -91,10 +91,13 @@ body{
   text-align: center;
 }
 
-
+.DataTable{
+  border-collapse: collapse;
+}
 
 table.fixed {
   table-layout: fixed;
+  
 }
 table, th, td{
   background-color: white;

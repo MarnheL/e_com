@@ -107,7 +107,9 @@ body {
 
 
 }
-
+table{
+  border-collapse: collapse;
+}
 table.fixed {
   table-layout: fixed;
 }

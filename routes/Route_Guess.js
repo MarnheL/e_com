@@ -689,13 +689,21 @@ router.route('/about')
     res.render('guess/about')
 })
 
-
+router.route('/privacy_policy')
+.get((req, res) => {
+    res.render('guess/privacy_policy')
+})
+router.route('/terms')
+.get((req, res) => {
+    res.render('guess/terms')
+})
 
 // / user/faqs1
 router.route('/faqs1')
 .get((req, res) => {
     res.render('guess/faqs/faqs1')
 })
+
 router.route('/faqs2')
 .get((req, res) => {
     res.render('guess/faqs/faqs2')
