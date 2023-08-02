@@ -84,7 +84,9 @@ footer{
   .fa-phone, .fa-location-dot, .fa-envelope{
     margin-right: 5px;
   }
-  
+  .email{
+    margin-bottom: 10px;
+  }
   /* responsive */
   @media (max-width: 767px){
     .footer-col{
