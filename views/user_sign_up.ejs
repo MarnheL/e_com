@@ -70,9 +70,9 @@
                         
                         
                             <label class="title" for="password">Password</label>
-                            <input type="password" class="email" placeholder="Enter Password" id="password" name="password">
-                            
+                            <input type="password" class="email" placeholder="Enter Password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                             <i class="fa-solid fa-eye fa-sm " id="eye"></i> 
+                           
                         </div>
                     </div>
                     <div class="createaccount-container">
