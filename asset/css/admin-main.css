@@ -136,8 +136,12 @@ div.container {
   text-align: center;
 }
 
-
+th{
+  text-align: center;
   
+  
+}
+
   
 @media (min-width: 768px) {
     #sidebar-wrapper {
