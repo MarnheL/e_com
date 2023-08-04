@@ -103,6 +103,7 @@
                         <th scope="col">Date</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Sold Items</th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Shipping fee</th>
                         <th scope="col">Total</th>
@@ -120,9 +121,15 @@
                                     <p><%- details.product_name %></p>
                                 <% }) %>
                             </td>
+                            
                             <td id="quantity">
                                 <% data.items.forEach(details => { %>
                                     <p><%- details.product_price %></p>
+                                <% }) %>
+                            </td>
+                            <td id="quantity">
+                                <% data.items.forEach(details => { %>
+                                    <p><%- details.product_quantity %></p>
                                 <% }) %>
                             </td>
                             <td id="subtotal"><%- data.sub_total %></td>
