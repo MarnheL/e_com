@@ -42,40 +42,26 @@ router.post('/*', checkAdmin);
 
 router.route('/dashboard')
 .get(async(req, res) => {
-    const order = await Order.find({status: 'delivered'}).populate('items')
     const sales = await Sales.find()
     let total_sales = 0
-    // if(order){
-    //     order.forEach(data => {
-    //         total_sales = total_sales + data.sub_total
-    //     })
-    // }
     if(sales){
         sales.forEach(data => {
             total_sales = total_sales + data.sub_total
         })
     }
-    // console.log(order)
     const product = await Product.find({isArchive: false})
     res.render('admin/dashboard', {total_sales, product})
 })
 
 router.route('/dashboard/accounts')
 .get(async(req, res) => {
-    const order = await Order.find({status: 'delivered'}).populate('items')
     const sales = await Sales.find()
     let total_sales = 0
-    if(order){
-        order.forEach(data => {
-            total_sales = total_sales + data.total_amount
-        })
-    }
     if(sales){
         sales.forEach(data => {
-            total_sales = total_sales + data.total
+            total_sales = total_sales + data.sub_total
         })
     }
-    // console.log(order)
     const account = await Account.find({accountType: 'user'})
     res.render('admin/dashboard_account', {total_sales, account})
 })
@@ -461,7 +447,6 @@ router.route('/sales-report')
         let option = req.query.option
         let start = moment(req.query.start).add(1, 'days')
         let end = moment(req.query.end).add(1, 'days')
-        let order;
         let sales;
         if(req.query.start == undefined && req.query.end == undefined){
             sales = await Sales.find()
@@ -471,7 +456,7 @@ router.route('/sales-report')
         let total_sales = 0
         if(sales){
             sales.forEach(data => {
-                total_sales = total_sales + data.total
+                total_sales = total_sales + data.sub_total
             })
         }
         res.render('admin/sales_report', {total_sales, sales})
