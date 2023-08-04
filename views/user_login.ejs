@@ -22,9 +22,10 @@
                         <label for="email">Email</label>
                     </div>
                     <div class="user-box">
-                        <input type="password" id="password" name="password" required="">
+                        <input type="password" id="password" name="password" required="" title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
                         <label for="password">Password</label>
                         <i class="fa-solid fa-eye fa-sm " id="eye"></i> 
+                        <!-- <p>must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</p> -->
                     </div>
                     <div class="col-3">
                         <button class="login-btn" id="liveAlertBtn">login</button>
@@ -51,6 +52,7 @@
         </div>
     </div>
 </body>
+
 <script>
     const passwordInput = document.querySelector("#password")
     const eye = document.querySelector("#eye")

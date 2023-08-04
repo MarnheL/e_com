@@ -173,6 +173,7 @@ label{
     padding: 3px 3px;
     margin-top: 10px;
     border-radius: 5px;
+    position: relative;
 
    
 
@@ -189,10 +190,21 @@ label{
     font-weight: 100;
     font-family: 'Poppins', sans-serif;
 }
+
+.account-profile-body p{
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+   
+
+    
+}
+
 .fa-eye{
     position: absolute;
     top: 77%;
-    left: 86%;
+    left: 87%;
     cursor: pointer;
     color: gray;
 }
@@ -337,13 +349,7 @@ label{
     }
     
 
-    .fa-eye{
-        position: absolute;
-        top: 87%;
-        left: 100%;
-        cursor: pointer;
-        color: gray;
-    }
+  
     
     .createaccount-container button{
         font-size: 0.6rem;
@@ -362,7 +368,14 @@ label{
   
    
    
-   
+   .fa-eye{
+    position: absolute;
+    top: 76%;
+    left: 72%;
+    cursor: pointer;
+    color: gray;
+    }
+
 
 
 

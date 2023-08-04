@@ -185,3 +185,10 @@ body{
     font-style: italic;
 
 }
+
+.user-box p{
+    /* background-color: red; */
+    font-size: 10px;
+    color: #fff;
+  
+}

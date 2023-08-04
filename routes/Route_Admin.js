@@ -72,7 +72,7 @@ router.route('/dashboard/accounts')
     }
     if(sales){
         sales.forEach(data => {
-            total_sales = total_sales + data.sub_total
+            total_sales = total_sales + data.total
         })
     }
     // console.log(order)
@@ -468,11 +468,10 @@ router.route('/sales-report')
         }else{
             sales = await Sales.find({createdAt: {$gte: start.toDate(), $lte: end.toDate()}, reason: option})
         }
-        console.log(sales)
         let total_sales = 0
         if(sales){
             sales.forEach(data => {
-                total_sales = total_sales + data.sub_total
+                total_sales = total_sales + data.total
             })
         }
         res.render('admin/sales_report', {total_sales, sales})
