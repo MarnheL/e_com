@@ -45,11 +45,12 @@ router.route('/dashboard')
     const order = await Order.find({status: 'delivered'}).populate('items')
     const sales = await Sales.find()
     let total_sales = 0
-    if(order){
-        order.forEach(data => {
-            total_sales = total_sales + data.sub_total
-        })
-    }if(sales){
+    // if(order){
+    //     order.forEach(data => {
+    //         total_sales = total_sales + data.sub_total
+    //     })
+    // }
+    if(sales){
         sales.forEach(data => {
             total_sales = total_sales + data.sub_total
         })
