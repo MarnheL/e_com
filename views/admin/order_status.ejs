@@ -121,65 +121,39 @@
                                 </div>
                                 <!-- Modal body -->
                                 <form action="/admin/order-status/<%- id %>/cancel" method="POST">
-                                  <div class="modal-body" id="">
-                                    <!-- <label for="reason">Reason: </label>
-                                    <select name="reason" id="reason">
-                                      <option value="Out of Stock">Out of Stock</option>
-                                      <option value="Failed Payment">Failed Payment</option>
-                                      <option value="Wrong Address">Wrong Address</option>
-                                      <option value="Out of Stock">Out of Stock</option>
-                                      <option value="Out of Stock">Out of Stock</option>
-                                      <option id="option" value="Other">Other</option>
-                                    </select> -->
-                                    <div>
-                                      <label for="">Out of Stock</label>
-                                      <input type="radio" name="reason" value="Out of Stock" onclick="hideTextInput()">
-                                    </div>
-
-                                    <div>
-                                      <label for="">Unmatched Reference</label>
-                                      <input type="radio" name="reason" value="Unmatched Reference" onclick="hideTextInput()">
-                                    </div>
-
-                                    <div>
-                                      <label for="">Not Related Image</label>
-                                      <input type="radio" name="reason" value="Not Related Image" onclick="hideTextInput()">
-                                    </div>
-
-                                    <div>
-                                      <label for="">Cannot Process Order</label>
-                                      <input type="radio" name="reason" value="Cannot Process Order" onclick="hideTextInput()">
-                                    </div>
-
-                                    <div>
-                                      <label for="">Other</label>
-                                      <input type="radio" name="reason" onclick="myReason()" value="Other" onclick="showTextInput()">
-                                    </div>
-                                    <div id="reason-cont">
-                                    <input class="reason-input" type="text" name="other" style="display: none;" id="other" required="required">
-                                  </div>
                                   
-                                    
-                                    <script>
-                                      function myReason(){
-                                        document.getElementById('other').style.display = 'block'
-                                      }
+                                  <div class="modal-body" id="">
+      
+                                    <div>
+                                      <input type="radio" name="reason" value="Out of Stock" onclick="hideTextInput()">
+                                      <label for="">Out of Stock</label>
+                                    </div>
 
-                                      function showTextInput() {
-                                      var input = document.getElementById("other");
-                                      input.style.display = "block";
-                                    }
+                                    <div>
+                                      <input type="radio" name="reason" value="Unmatched Reference Number" onclick="hideTextInput()">
+                                      <label for="">Unmatched Reference</label>
+                                    </div>
 
-                                    function hideTextInput() {
-                                      var input = document.getElementById("other");
-                                      input.style.display = "none";
-                                    }
-                                    </script>
-                                    <p>Are you sure you want to cancel this orders?</p>
+                                    <div>
+                                      <input type="radio" name="reason" value="Not Related Image" onclick="hideTextInput()">
+                                      <label for="">Not Related Image</label>
+                                    </div>
+
+                                    <div>
+                                      <input type="radio" name="reason" value="Cannot Process Order" onclick="hideTextInput()">
+                                      <label for="">Cannot Process Order</label>
+                                    </div>
+
+                                    <div id="reason-cont">
+                                      <input type="radio" name="reason" onclick="myReason()" value="Other" onclick="showTextInput()">
+                                      <label for="">Other</label>
+                                      <input class="reason-input" type="text" name="other" style="display: none;" id="other"  >
+                                    </div>     
+                                    <!-- <p>Are you sure you want to cancel this orders?</p> -->
                                   </div>
                                   <!-- Modal footer -->
                                   <div class="modal-footer">
-                                    <!-- <a href="/admin/order-status/<%- id %>/cancel" class="btn btn-success">Save Changes</a> -->
+                      
                                     <button class="btn btn-primary">Save Changes</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                   </div>
@@ -193,18 +167,37 @@
                     </div>
                     <!-- /#page-content-wrapper -->
   </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/js/admin.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/admin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-<script>
- 
-  $('#example').DataTable( {
-  "ordering": false
-} );
+
+    <script>
+      function myReason(){
+        document.getElementById('other').style.display = 'block'
+        
+      }
+
+      function showTextInput() {
+      var input = document.getElementById("other");
+      input.style.display = "block";
   
-</script>
+    }
+
+    function hideTextInput() {
+      var input = document.getElementById("other");
+      input.style.display = "none";
+                    
+    }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+    
+      $('#example').DataTable( {
+      "ordering": false
+    } );
+      
+    </script>
 </body>
 </html>

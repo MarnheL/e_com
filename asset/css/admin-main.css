@@ -141,8 +141,18 @@ th{
   
   
 }
+.modal-body{
+  /* border: 3px solid black; */
+  text-align:justify ;
 
+ 
   
+}
+
+.reason-input{
+  width: 100%;
+  /* border: 3px solid black; */
+}
 @media (min-width: 768px) {
     #sidebar-wrapper {
       margin-left: 0;
