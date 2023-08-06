@@ -53,7 +53,20 @@ ol,  li{
     color: grey;
   }
   
+  @media screen and (max-width: 1000px) {
+    h1{
+        font-size: 1rem;
+    }
+    li{
+    font-size: 0.8rem;
+    /* background-color: red; */
+    margin-left: 40px;
+    }
+    
+}
   
+
+ 
 
  
  
