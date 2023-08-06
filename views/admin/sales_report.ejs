@@ -111,8 +111,14 @@
                             <td id="reason"><%- data.reason %></td>
                         </tr>
                     <% }) %>
+                    
                 </tbody>
             </table>
+            <% if(sales == '') { %> 
+                <h4 id="nodata" class="text-center"> No data available in table</h4>
+            <% } %>    
+              
+            
             <!-- Page Content -->
         </div>
             

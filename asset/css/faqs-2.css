@@ -89,11 +89,14 @@ body{
   .faqs2-img3{
     height: 200px;
   }
-  .faqs2-img5,
-  .faqs2-img4{
+  .faqs2-img5
+ {
     height: 200px;
     
  
     
+  }
+  .faqs2-img4{
+    width: 30%;
   }
 }

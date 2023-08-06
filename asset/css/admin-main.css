@@ -149,6 +149,11 @@ th{
   
 }
 
+#nodata{
+  font-size: 17px;
+  font-weight: 500;
+}
+
 .reason-input{
   width: 100%;
   /* border: 3px solid black; */
