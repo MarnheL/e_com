@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs')
 
 const shippingFees = require('../middleware/ship')
+const ShippingFee = require('../models/Ship')
 
 const cloudinary = require('../controller/imageUploader');
 
@@ -453,14 +454,28 @@ router.route('/order-summary/:id')
     const item = await Product.findById(id)
     const product = await Product.findById(id)
     let shipping_fee = 0;
-    let city = shippingFees.find(p => p.city == res.locals.user.city)
-    if(city){
-        let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
-        if(barangay){
-            console.log(barangay.fee)
-            shipping_fee = barangay.fee
-        }
-    }
+
+    // let city = shippingFees.find(p => p.city == res.locals.user.city)
+    // if(city){
+    //     let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
+    //     if(barangay){
+    //         console.log(barangay.fee)
+    //         shipping_fee = barangay.fee
+    //     }
+    // }
+
+    const shippingFee = await ShippingFee.find()
+    shippingFee.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            if(city.city == res.locals.user.city){
+                city.barangays.forEach(barangay => {
+                    if(barangay.name == res.locals.user.barangay){
+                        shipping_fee = barangay.fee
+                    }
+                })
+            }
+        })
+    })
     res.render('user/order_summary', {item, shipping_fee})
 })
 .post(upload.single('image'), async(req, res) => {

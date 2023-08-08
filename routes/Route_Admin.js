@@ -33,6 +33,8 @@ const Sales = require('../models/Sales_Report')
 const Remove_Item = require('../models/Remove_Item')
 const shippingFees = require('../middleware/ship')
 
+const shippingFee = require('../models/Ship')
+
 // account authentication
 const { adminAuth, checkAdmin } = require('../middleware/auth');
 
@@ -42,6 +44,15 @@ router.post('/*', checkAdmin);
 
 router.route('/dashboard')
 .get(async(req, res) => {
+    const shippingFees = await shippingFee.find()
+    shippingFees.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            console.log(city.city)
+            city.barangays.forEach(barangay => {
+                console.log(barangay.name);
+            })
+        })
+    })
     const sales = await Sales.find()
     let total_sales = 0
     if(sales){
@@ -294,6 +305,20 @@ router.route('/inventory/:id/sell-item')
     //     console.log(sales)
     // })
     res.redirect('/admin/inventory')
+})
+
+router.route('/shipping-fee')
+.get(async(req, res) => {
+    const shippingFees = await shippingFee.find()
+    shippingFees.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            console.log(city.city)
+            city.barangays.forEach(barangay => {
+                console.log(barangay.name);
+            })
+        })
+    })
+    res.render('admin/shipping_fee', {shippingFees})
 })
 
 // display all pending order
