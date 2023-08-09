@@ -42,17 +42,53 @@
                                     <td>
                                         <div class="d-flex j justify-content-center">
                                             <form action="/admin/archive/<%- data.id %>/restore" method="POST">
-                                                <button class="btn btn-success "><i class="bi bi-arrow-counterclockwise "></i>Restore</button>
+                                                <button class="btn btn-success float-right me-1"><i class="bi bi-arrow-counterclockwise "></i>Restore</button>
                                             </form>
-                                            <form action="/admin/archive/<%- data.id %>/delete" method="POST">
-                                                <button class="btn btn-danger ms-1"><i class="bi bi-trash me-1"></i>Delete</button>
-                                            </form>
+                                            <button type="button" class="btn btn-danger float-right me-1" data-bs-toggle="modal" data-bs-target="#myModal1"><i class="bi bi-trash me-1"></i>Delete</button>
+                                           
                                         </div>
                                     </td>
                                 </tr>
-                            <% }) %>
+                            
                         </tbody>
                 </table>
+
+              
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal1">
+                            <div class="modal-dialog">
+                                <div class="modal-content"> 
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Delete Product</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                        <!-- Modal body -->
+                                    <div class="modal-body" id="">
+                                        <p>Are you sure you want to permanently delete this product?</p>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <form action="/admin/archive/<%- data.id %>/delete" method="POST">
+                                                    <button class="btn btn-danger ms-1"></i>Delete</button>
+                                                </form>
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                  <!-- End of Modal -->
+                  <!-- /#page-content-wrapper -->
+
+
+
+
+
+
+
+
                 <% if(product == '') { %> 
                     <h4 id="nodata" class="text-center"> No data available in table</h4>
                 <% } %>  

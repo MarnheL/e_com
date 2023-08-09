@@ -97,16 +97,63 @@
                           <td id="action">
                             <% id = info.id %>
                             <div class="d-flex text-ce width">
-                              <a href="/admin/order-status/<%- info.id %>/ongoing" class="btn btn-success float-right me-1">Process</a>
+                              <!-- <a href="/admin/order-status/<%- info.id %>/ongoing" class="btn btn-success float-right me-1">Process</a> -->
+                              
+                              <button type="button" class="btn btn-success float-right me-1" data-bs-toggle="modal" data-bs-target="#myModal1">Process</button>
                               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Cancel</button>
                             </div>
                           </td>
                         </tr>
-                      <% }) %>
+                     
                     </tbody>
                 </table>
                 <tr>
                   <td>
+                    
+
+                    <div class="container">
+                      <div class="btn-group">
+                        <div class="col-md-12 text-center">
+                          <!-- The Modal -->
+                          <div class="modal" id="myModal1">
+                            <div class="modal-dialog">
+                              <div class="modal-content"> 
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Process Order</h4>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <!-- Modal body -->
+    
+                                  <div class="modal-body" id="">
+                                       <p>Are you sure you want to Process this order?</p>
+                  
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <!-- <button class="btn btn-primary">Save Changes</button> -->
+                                    <a href="/admin/order-status/<%- info.id %>/ongoing" class="btn btn-primary float-right me-1">Process</a>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                  <% }) %>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <!-- End of Modal -->
+                    <!-- /#page-content-wrapper -->
+
+
+
+
+
+
+
+
+
+                    <!-- Modal for Cancel -->
                     <div class="container">
                       <div class="btn-group">
                         <div class="col-md-12 text-center">
@@ -165,6 +212,7 @@
                         </div>
                       </div>
                     </div>
+                    <!-- End of Modal -->
                     <!-- /#page-content-wrapper -->
   </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

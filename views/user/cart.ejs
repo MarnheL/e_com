@@ -126,7 +126,25 @@
                             </div>
                             <div  class="gcash"> 
                                 <label for="">GCash</label>
-                                <input type="radio" value="GCash" name="payment_method" onclick="gGash()" id="gcash" required>
+                                <input type="radio" value="GCash" name="payment_method" onclick="gGash()" id="gcash" data-modal-target="#modal" required>
+
+                                 <!-- Modal -->
+                                <div class="modal" id="modal">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <div class="title">Pay using QR Code</div>
+                                        <button data-close-button class="close-button">&times;</button>
+                                    </div>
+                                    <!-- Modal Body -->
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <img class="image-1" src="/img/QR CODE.jpg" >                                           
+                                        </div>                                      
+                                        <h2>09978801968</h2>
+                                    </div>
+                                        </div>
+                                <div id="overlay"></div>
+                            <!-- End of Modal -->
                             </div>
                             <input class="file" type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
                         </div>
@@ -149,4 +167,42 @@
     <%- include('include/footer') %>
     <script src="/js/script.js"></script>
 </body>
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+    })
+
+    overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
+    })
+
+    closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+    })
+
+    function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+    }
+</script>
 </html>

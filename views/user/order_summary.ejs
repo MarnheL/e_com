@@ -28,14 +28,37 @@
                             <h2>Mode of Payment</h2>
                         </div>
                         <div>
-                            <input type="radio" id="COD" name="payment_method" onclick="cod()" value="COD" required>
+                            <input type="radio" id="COD" name="payment_method" onclick="cod()" value="COD"  required>
                             <label for="COD">Cash on delivery</label>
                         </div>
                         <div>
-                            <input type="radio" id="GCash" name="payment_method" onclick="gGash()" id="gcash" value="GCash" required>
-                            <label for="GCASH">Gcash</label>
+                            <input type="radio" name="payment_method"  onclick="gGash()" id="gcash" value="GCash" data-modal-target="#modal" required>
+                            <label for="GCASH">Gcash </label>
+                            <!-- Modal -->
+                            <div class="modal" id="modal">
+                                 <!-- Modal Header -->
+                                <div class="modal-header">
+                                <div class="title">Pay using QR Code</div>
+                                <button data-close-button class="close-button">&times;</button>
+                                </div>
+                                 <!-- Modal Body -->
+                                <div class="modal-body">
+                                    <div class="img-container">
+                                        <img class="image-1" src="/img/QR CODE.jpg" >
+                                        
+                                    </div>
+                                  
+                                    <h2>09978801968</h2>
+                                </div>
+                            </div>
+                            <div id="overlay"></div>
+                             <!-- End of Modal -->
+
+
                         </div>
-                        <input type="file" id="image" name="image" accept=".png , .jpg" style="display: none;">
+                        <!-- <label for="upload your receipt"></label> -->
+                        <input type="file" id="image" name="image" accept=".png , .jpg" style="display: none;" title="dasdasdasd">
+                        
                     </div>
                 </div>
                 <div class="info-2">
@@ -138,5 +161,44 @@
 
    <%- include('include/footer') %>
    <script src="/js/script.js"></script>
+
 </body>
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+    const closeModalButtons = document.querySelectorAll('[data-close-button]')
+    const overlay = document.getElementById('overlay')
+
+    openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+    })
+
+    overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach(modal => {
+        closeModal(modal)
+    })
+    })
+
+    closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+    })
+
+    function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+    }
+
+    function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+    }
+</script>
 </html>

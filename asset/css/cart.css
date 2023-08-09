@@ -275,6 +275,113 @@ div label{
     text-decoration: underline;
 }
 
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+  }
+  
+  .modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-body {
+    padding: 10px 15px;
+  }
+  
+  /* #overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+  }
+  
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 1;
+  } */
+
+/* Modal */
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  .button {
+    margin: 5px;
+  }
+
+ .modal-body img{
+    height: 300px;
+   
+    
+ }
+ .modal-body {
+    /* border: 3px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+ }
+ #img{
+    display: none;
+    margin: 0;
+ }
+ input[type=file] {
+    color: transparent !important;
+}
+input[type=file]::before {
+  content: "Upload your Receipt ";
+  color: black;
+  font-weight: bold;
+  /* margin-right: 10px;  */
+}
+#image{
+    display: none;
+}
+.modal{
+     
+   top: 10%;
+   
+   
+   
+}
 
 @media (max-width: 1000px) {
     
@@ -408,7 +515,11 @@ div label{
     .cart-content{
         width: 100%;
     }
+    .modal-body img{
+      height: 100px;
+       
+        
+     }
 }
-
 
 

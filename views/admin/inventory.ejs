@@ -26,7 +26,7 @@
                 <table id="example" class="display table table-hover bg-white rounded text-center" style="width:100%"> 
                     <thead class="table-dark">
                         <tr >
-                            <th class="text-center" scope="col">ID</th>
+                            <!-- <th class="text-center" scope="col">ID</th> -->
                             <th class="text-center" scope="col">Product Image</th>
                             <th class="text-center" scope="col">Product Name</th>
                             <th class="text-center" scope="col">Stocks</th>
@@ -36,7 +36,7 @@
                     <tbody>
                         <% renderProduct.forEach(data => { %>
                             <tr>
-                                <td id="date" class="date"><%- data.id %></td>
+                                <!-- <td id="date" class="date"><%- data.id %></td> -->
                                 <td><img src="<%- data.img_name %>" alt="" style="width: 50px; height: 50px;"></td>
                                 <td><%- data.product_name %></td>
                                 <td><%- data.product_stock %></td>

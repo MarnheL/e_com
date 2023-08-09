@@ -22,8 +22,10 @@ body{
 .products-content{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    row-gap: 30px;
+    row-gap: 50px;
     margin: 100px auto;
+    width: 90%;
+    position: relative;
 }
 
  
@@ -66,7 +68,7 @@ select{
     margin: 0 20px;
     aspect-ratio: 1/1;
     object-fit: contain;
-
+    margin-top: 50px;
 
 
   
@@ -86,11 +88,18 @@ div img{
     justify-content: center;
     align-items: center;
     
+    /* background-color: lightblue; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    position: relative;
+   
+    
 
 
 }
 .description-1{
-    width: 40%;
+    width: 50%;
     margin-bottom: 10px;
     margin-top: 10px;
     font-size: 1em;
@@ -98,7 +107,7 @@ div img{
 .btns1-container{
     display: flex;
     flex-wrap: wrap; 
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     justify-content: center;
     width: 100%;
     
@@ -267,6 +276,21 @@ input[type=number] {
 }
 
 @media (max-width: 480px) {
+    .image-1{
+        margin-top: 30px;
+    }
+    .btns1-container{
+        margin-bottom: 50px;
+    }
+    .products1-container{
+        margin: 0 10px;
+        
+    }
+    .products-content{
+        row-gap: 50px;
+      
+        width: 100%;
+    }
     .btns1-container{
         /* border: 1px solid black; */
         display: flex;

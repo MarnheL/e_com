@@ -57,8 +57,8 @@ var cities = [
   createCity('Carmona', 'Carmona', 'Cavite'),/** DONE */
   createCity('Cavite City', 'Cavite City', 'Cavite'),/** DONE */
   createCity('Dasmarinas', 'Dasmarinas', 'Cavite'),/** DONE */
-  createCity('General Emilio Aguinaldo', 'General Emilio Aguinaldo', 'Cavite'),/** DONE */
   createCity('General Mariano Alvarez', 'General Mariano Alvarez', 'Cavite'),/** DONE */
+  createCity('General Emilio Aguinaldo', 'General Emilio Aguinaldo', 'Cavite'),/** DONE */
   createCity('General Trias', 'General Trias', 'Cavite'),/** DONE */
   createCity('Imus', 'Imus', 'Cavite'),/** DONE */
   createCity('Indang', 'Indang', 'Cavite'),/** DONE */
