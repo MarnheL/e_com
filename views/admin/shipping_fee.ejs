@@ -47,7 +47,18 @@
                                             <p><%- barangay.fee %></p>
                                         <% }) %>
                                     </td>
-                                    <td>update</td>
+                                    <td>
+                                        <p>Increase Shipping Fee</p>
+                                        <form action="/admin/shipping-fee/add/<%- cityData.id %>" method="POST">
+                                            <input type="number" min="1" name="amount" required>
+                                            <button>save</button>
+                                        </form>
+                                        <p>Decrease Shipping Fee</p>
+                                        <form action="/admin/shipping-fee/sub/<%- cityData.id %>" method="POST">
+                                            <input type="number" min="1" name="amount" required>
+                                            <button>save</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <% }) %>
                         <% }) %>
