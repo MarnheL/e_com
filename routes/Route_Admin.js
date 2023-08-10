@@ -310,15 +310,57 @@ router.route('/inventory/:id/sell-item')
 router.route('/shipping-fee')
 .get(async(req, res) => {
     const shippingFees = await shippingFee.find()
-    shippingFees.forEach(cities => {
-        cities.shippingFees.forEach(city => {
-            console.log(city.city)
-            city.barangays.forEach(barangay => {
-                console.log(barangay.name);
-            })
-        })
-    })
+    // shippingFees.forEach(cities => {
+    //     cities.shippingFees.forEach(city => {
+    //         console.log(city.city)
+    //         city.barangays.forEach(barangay => {
+    //             console.log(barangay.name);
+    //         })
+    //     })
+    // })
     res.render('admin/shipping_fee', {shippingFees})
+})
+
+router.post('/shipping-fee/add/:id', async(req, res) => {
+    const id = req.params.id;
+    const amount = parseInt(req.body.amount);
+    console.log(amount)
+    const shipping_fee = await shippingFee.findById(id);
+    try {
+    shipping_fee.shippingFees.forEach(async (city) => {
+        city.barangays.forEach(async (shipping) => {
+            console.log(shipping);
+            shipping.fee = shipping.fee + amount;
+        });
+    });
+        await shipping_fee.save();
+        console.log("Shipping fees updated and saved successfully.");
+        res.redirect('/admin/shipping-fee/');
+    } catch (error) {
+    console.error("An error occurred while updating and saving shipping fees:", error);
+    }
+})
+
+router.post('/shipping-fee/sub/:id', async(req, res) => {
+    const id = req.params.id;
+    const amount = parseInt(req.body.amount);
+    console.log(amount)
+    const shipping_fee = await shippingFee.findById(id);
+    try {
+    shipping_fee.shippingFees.forEach(async (city) => {
+        city.barangays.forEach(async (shipping) => {
+            console.log(shipping);
+            if(amount < shipping.fee){
+                shipping.fee = shipping.fee - amount;
+            }
+        });
+    });
+        await shipping_fee.save();
+        console.log("Shipping fees updated and saved successfully.");
+        res.redirect('/admin/shipping-fee/');
+    } catch (error) {
+    console.error("An error occurred while updating and saving shipping fees:", error);
+    }
 })
 
 // display all pending order

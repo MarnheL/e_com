@@ -2,7 +2,15 @@ const mongoose = require('mongoose')
 
 const shippingSchema = new mongoose.Schema({
     shippingFees: [{
-        type: Object
+        city: String,
+        barangays: [{
+            name: {
+                type: String,
+            },
+            fee: {
+                type: Number,
+            }
+        }]
     }],
 })
 
