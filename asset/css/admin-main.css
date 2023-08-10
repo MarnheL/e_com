@@ -158,6 +158,32 @@ th{
   width: 100%;
   /* border: 3px solid black; */
 }
+
+#input{
+  border-right: none;
+  border-left: none;
+  border-top: none;
+  width:85%;
+  text-align: center;
+}
+#input:focus, textarea:focus, select:focus{
+  outline: none;
+  border-right: none;
+  border-left: none;
+  border-top: none;
+}
+
+#input::-webkit-outer-spin-button,
+#input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+/* Firefox */
+#input[type=number] {
+  -moz-appearance: textfield;
+}
 @media (min-width: 768px) {
     #sidebar-wrapper {
       margin-left: 0;
