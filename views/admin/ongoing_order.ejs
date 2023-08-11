@@ -42,12 +42,13 @@
               <table class=" display table table-hover text-center bg-white" id="example"  style="width:100%">
                 <thead class="table-dark">
                     <tr>
+                      <th id="date" scope="col">Date</th>
                       <th scope="col">Name</th>
                       <th id="address">Address</th>
                       <th scope="col">Contact #</th>
                       <th id="order" scope="col">Order</th>
                       <th id="quantity" scope="col">Quantity</th>
-                      <th id="date" scope="col">Date</th>
+                   
                       <th scope="col">MOP</th>
                       <th scope="col">SubTotal</th>
                       <th scope="col">Total</th>
@@ -59,6 +60,7 @@
                     <tbody>
                       <% order.forEach(info => { %>
                         <tr>
+                          <td id="date" ><%- info.date_ordered.toLocaleString()%></td>
                           <td id="pending-name" ><%- info.fullname %></td>
                           <td id="address">
                             <%- info.house_no %> <%- info.zip_code %> <%- info.barangay %> <%- info.city %> <%- info.province %>
@@ -74,7 +76,7 @@
                               <p><%- data.quantity %></p>
                             <% }) %>
                           </td>
-                          <td id="date" ><%- info.date_ordered.toLocaleString()%></td>
+                         
                           <td>
                             <%- info.payment_method %>
                             <% if(info.payment_method == 'GCash') { %>

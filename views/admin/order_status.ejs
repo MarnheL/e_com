@@ -1,6 +1,7 @@
 
 <%- include('include/head') %>
   <title>Order Status</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -43,24 +44,28 @@
                
                 <thead class="table-dark">
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Contact #</th>
-                        <th id="order" scope="col">Order</th>
-                        <th id="quantity" scope="col">Quantity</th>
-                        <th id="date" scope="col">Date</th>
-                        <th scope="col">MOP</th>
-                        <th scope="col">SubTotal</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Type</th>
-                        <th id="action" scope="col">Action</th>
+                      <th id="date" scope="col">Date</th>
+                      <th scope="col">Name</th>
+                      <th id="address">Address</th>
+                      <th scope="col">Contact #</th>
+                      <th id="order" scope="col">Order</th>
+                      <th id="quantity" scope="col">Quantity</th>
+                   
+                      <th scope="col">MOP</th>
+                      <th scope="col">SubTotal</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Type</th>
+                      <th id="action" scope="col">Action</th>
+                      </tr>
+                        
                       </tr>
                     </thead>
                     <tbody>
                       <% let id; %>
                       <% order.forEach(info => { %>
                         <tr>
+                          <td id="date"><%- info.date_ordered.toLocaleString() %></td>
                           <td id="pending-name" class="text-center"><%- info.fullname %></td>
                           <td id="pending-address">
                             <div class="text-center">
@@ -78,7 +83,7 @@
                         
                             <% }) %>
                           </td>
-                          <td id="date"><%- info.date_ordered.toLocaleString() %></td>
+                         
                           <td>
                             <%- info.payment_method %>
                             <% if(info.payment_method == 'GCash') { %>
@@ -203,5 +208,15 @@ function hideTextInput() {
   input.style.display = "none";
                 
 }
+</script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script>
+   $('#example').DataTable( {
+"ordering": false
+} );
+  
 </script>
 </html>

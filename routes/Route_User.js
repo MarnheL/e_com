@@ -444,7 +444,7 @@ router.route('/update-password')
 
 router.route('/order')
 .get(async(req, res) => {
-    const order = await Order.find({user_id: res.locals.user.id, status: {$nin : ['cancelled','delivered']}})
+    const order = await Order.find({user_id: res.locals.user.id, status: {$nin : ['cancelled','delivered']}}).sort('-createdAt')
     const user_id = res.locals.user.id;
     const cancelled = await Cancelled.findOne({user_id}).count();
     res.render('user/order', {order, cancelled})
@@ -572,7 +572,7 @@ router.route('/order-summary/:id')
         })
         order.save()
     }
-    res.redirect('/user/product')
+    res.redirect('/user/order')
 })
 
 router.route('/about')

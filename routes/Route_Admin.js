@@ -533,7 +533,7 @@ router.route('/sales-report')
         let end = moment(req.query.end).add(1, 'days')
         let sales;
         if(req.query.start == undefined && req.query.end == undefined){
-            sales = await Sales.find()
+            sales = await Sales.find().sort('-createdAt')
         }else{
             sales = await Sales.find({createdAt: {$gte: start.toDate(), $lte: end.toDate()}, reason: option})
         }
