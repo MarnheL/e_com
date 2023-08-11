@@ -34,6 +34,7 @@ const Remove_Item = require('../models/Remove_Item')
 const shippingFees = require('../middleware/ship')
 
 const shippingFee = require('../models/Ship')
+const ShippingFee = require('../models/Ship');
 
 // account authentication
 const { adminAuth, checkAdmin } = require('../middleware/auth');
@@ -44,7 +45,7 @@ router.post('/*', checkAdmin);
 
 router.route('/dashboard')
 .get(async(req, res) => {
-    const shippingFees = await shippingFee.find()
+    const shippingFees = await ShippingFee.find()
     shippingFees.forEach(cities => {
         cities.shippingFees.forEach(city => {
             console.log(city.city)
@@ -124,6 +125,7 @@ router.route('/inventory/add-product')
     })
     .catch(err => {
         console.log(err.message)
+        res.redirect('/admin/inventory')
     })
 })
 
@@ -309,15 +311,7 @@ router.route('/inventory/:id/sell-item')
 
 router.route('/shipping-fee')
 .get(async(req, res) => {
-    const shippingFees = await shippingFee.find()
-    // shippingFees.forEach(cities => {
-    //     cities.shippingFees.forEach(city => {
-    //         console.log(city.city)
-    //         city.barangays.forEach(barangay => {
-    //             console.log(barangay.name);
-    //         })
-    //     })
-    // })
+    const shippingFees = await ShippingFee.find()
     res.render('admin/shipping_fee', {shippingFees})
 })
 
@@ -325,7 +319,7 @@ router.post('/shipping-fee/add/:id', async(req, res) => {
     const id = req.params.id;
     const amount = parseInt(req.body.amount);
     console.log(amount)
-    const shipping_fee = await shippingFee.findById(id);
+    const shipping_fee = await ShippingFee.findById(id);
     try {
     shipping_fee.shippingFees.forEach(async (city) => {
         city.barangays.forEach(async (shipping) => {
@@ -345,7 +339,7 @@ router.post('/shipping-fee/sub/:id', async(req, res) => {
     const id = req.params.id;
     const amount = parseInt(req.body.amount);
     console.log(amount)
-    const shipping_fee = await shippingFee.findById(id);
+    const shipping_fee = await ShippingFee.findById(id);
     try {
     shipping_fee.shippingFees.forEach(async (city) => {
         city.barangays.forEach(async (shipping) => {
@@ -387,16 +381,27 @@ router.route('/order-status/:id/ongoing')
 .get(async(req, res) => {
     const id = req.params.id
     const order = await Order.findByIdAndUpdate(id, {status: 'to ship'}, {new: true})
+    const shippingFee = await ShippingFee.find()
     console.log(order)
     let shipping_fee = 0;
-        let city = shippingFees.find(p => p.city == order.city)
-        // console.log(city)
-        if(city){
-            let barangay = city.barangays.find(p => p.name == order.barangay)
-            if(barangay){
-                shipping_fee = barangay.fee
-            }
-        }
+        // let city = shippingFees.find(p => p.city == order.city)
+        // if(city){
+        //     let barangay = city.barangays.find(p => p.name == order.barangay)
+        //     if(barangay){
+        //         shipping_fee = barangay.fee
+        //     }
+        // }
+        shippingFee.forEach(cities => {
+            cities.shippingFees.forEach(city => {
+                if(city.city == order.city){
+                    city.barangays.forEach(barangay => {
+                        if(barangay.name == order.barangay){
+                            shipping_fee = barangay.fee
+                        }
+                    })
+                }
+            })
+        })
     let product_price = 0
     let item = []
     order.items.forEach(async (data) => {
@@ -428,6 +433,8 @@ router.route('/order-status/:id/ongoing')
 //     res.redirect('/admin/order-status')
 // })
 
+const CancelledOrder = require('../models/Cancelled');
+
 router.route('/order-status/:id/cancel')
 .post(async(req, res) => {
     const id = req.params.id
@@ -436,9 +443,19 @@ router.route('/order-status/:id/cancel')
     console.log(other, reason)
     if(reason == 'Other'){
         console.log('other is selected')
-        await Order.findByIdAndUpdate(id, {status: 'cancelled', reason: other}, {new: true})
+        const order = await Order.findByIdAndUpdate(id, {status: 'cancelled', reason: other}, {new: true})
+        CancelledOrder.create({
+            order_id: order.id,
+            user_id: order.user_id,
+            reason: other
+        })
     }else{
-        await Order.findByIdAndUpdate(id, {status: 'cancelled', reason: reason}, {new: true})
+        const order = await Order.findByIdAndUpdate(id, {status: 'cancelled', reason: reason}, {new: true})
+        CancelledOrder.create({
+            order_id: order.id,
+            user_id: order.user_id,
+            reason: reason
+        })
     }
     res.redirect('/admin/order-status')
 })
