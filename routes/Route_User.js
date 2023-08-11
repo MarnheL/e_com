@@ -460,13 +460,10 @@ router.route('/order/:id')
 
 router.route('/history')
 .get(async(req, res) => {
-    const order = await Order.find({user_id: res.locals.user.id, status: {$in: ['delivered', 'cancelled'] }})
+    const order = await Order.find({user_id: res.locals.user.id, status: {$in: ['delivered', 'cancelled'] }}).sort('createdAt')
     const user_id = res.locals.user.id;
-    // await Cancelled.findOneAndDelete({user_id});
     await Cancelled.find({user_id})
-    const result = await Cancelled.deleteMany({ user_id });
-    const remaining = await Cancelled.find({ user_id });
-    console.log(remaining);
+    await Cancelled.deleteMany({ user_id });
     const cancelled = 0
     res.render('user/history', {order, cancelled})
 })
