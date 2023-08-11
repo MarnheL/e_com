@@ -15,7 +15,47 @@
         </div>   
     </div>
     <div class="div-1">
+        
+		<div class="icon" onclick="toggleNotifi()">
+
+			<a href="/user/history"><i class="fa-regular fa-bell fa-lg"></i></a>
+             <span >11</span>
+		</div>
+		<!-- <div class="notifi-box" id="box">
+			<h2>Notifications <span>17</span></h2>
+			<div class="notifi-item">
+				<img src="img/avatar1.png" alt="img">
+				<div class="text">
+				   <h4>Elias Abdurrahman</h4>
+				   <p>@lorem ipsum dolor sit amet</p>
+			    </div> 
+			</div>
+
+		
+		</div> -->
+
+
+
+
+
         <a class="product"  href="/user/product">Products</a>
         <a class="cart" href="/user/cart">Cart</a>
     </div>
 </div> 
+<script >
+    var box  = document.getElementById('box');
+var down = false;
+
+
+function toggleNotifi(){
+if (down) {
+    box.style.height  = '0px';
+    box.style.opacity = 0;
+    down = false;
+}else {
+    box.style.height  = '510px';
+    box.style.opacity = 1;
+    down = true;
+}
+}
+</script>
