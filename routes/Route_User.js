@@ -37,6 +37,7 @@ const Product = require('../models/Product')
 const ShoppingCart = require('../models/Shopping_Cart');
 const Pre_Order = require('../models/Pre_Order');
 const Category = require('../models/Category')
+const Cancelled = require('../models/Cancelled');
 
 const session = require('express-session');
 router.use(session({
@@ -92,9 +93,13 @@ router.route('/api/cart/:id')
     })
 })
 
+let cancelled = 0;
+
 router.route('/home')
-.get((req, res) => {
-    res.render('user/home')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/home', {cancelled})
 })
 
 router.route('/product')
@@ -107,7 +112,9 @@ router.route('/product')
         renderProduct = await Product.find({product_category: cat, isArchive: false, product_stock: {$gt: 0}})
     }
     const category = await Category.find()
-    res.render('user/product', {renderProduct, category})
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/product', {renderProduct, category, cancelled})
 })
 
 router.route('/product/:id/add-to-cart')
@@ -163,9 +170,9 @@ router.route('/product/:id/add-to-cart')
 router.route('/cart')
 .get(async(req, res) => {
     try{
-        const id = res.locals.user.id;
+        const user_id = res.locals.user.id;
         const product = await Product.find()
-        const cart = await ShoppingCart.findOne({user_id: id})
+        const cart = await ShoppingCart.findOne({user_id})
         let shipping_fee = 0;
         let city = shippingFees.find(p => p.city == res.locals.user.city)
         // console.log(city)
@@ -198,7 +205,8 @@ router.route('/cart')
                 })
             })
         }
-        res.render('user/cart', {newcart, shipping_fee})
+        const cancelled = await Cancelled.findOne({user_id}).count();
+        res.render('user/cart', {newcart, shipping_fee, cancelled})
     }
     catch(err){
         console.log(err.message)
@@ -251,7 +259,6 @@ router.route('/cart/:id/deduc')
         }
     }
     cart.save()
-
     res.redirect('/user/cart')
 })
 
@@ -268,7 +275,8 @@ router.route('/cart/:id/remove')
         cart.items.splice(itemIndex, 1)
     }
     cart.save()
-    res.redirect('/user/cart')
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.redirect('/user/cart', {cancelled})
 })
 
 router.route('/cart/place-order')
@@ -350,8 +358,10 @@ router.route('/cart/place-order')
 
 
 router.route('/update-address')
-.get((req, res) => {
-    res.render('user/update_address')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/update_address', {cancelled})
 })
 .post(async(req, res) => {
     // const {complete_address} = req.body;
@@ -367,8 +377,10 @@ router.route('/update-address')
 })
 
 router.route('/update-number')
-.get((req, res) => {
-    res.render('user/update_number')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/update_number', {cancelled})
 })
 .post(async(req, res) => {
     const {contact_number} = req.body;
@@ -378,16 +390,18 @@ router.route('/update-number')
 })
 
 router.route('/account')
-.get((req, res) => {
-    res.render('user/account', {messages: req.flash('message')})
-    
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/account', {messages: req.flash('message'), cancelled})
 })
-
 
 // update info
 router.route('/update-info')
-.get((req, res) => {
-    res.render('user/update_info')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/update_info', {cancelled})
 })
 .post(async(req, res) => {
     const id = res.locals.user.id
@@ -431,7 +445,9 @@ router.route('/update-password')
 router.route('/order')
 .get(async(req, res) => {
     const order = await Order.find({user_id: res.locals.user.id, status: {$nin : ['cancelled','delivered']}})
-    res.render('user/order', {order})
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/order', {order, cancelled})
 })
 
 router.route('/order/:id')
@@ -445,7 +461,14 @@ router.route('/order/:id')
 router.route('/history')
 .get(async(req, res) => {
     const order = await Order.find({user_id: res.locals.user.id, status: {$in: ['delivered', 'cancelled'] }})
-    res.render('user/history', {order})
+    const user_id = res.locals.user.id;
+    // await Cancelled.findOneAndDelete({user_id});
+    await Cancelled.find({user_id})
+    const result = await Cancelled.deleteMany({ user_id });
+    const remaining = await Cancelled.find({ user_id });
+    console.log(remaining);
+    const cancelled = 0
+    res.render('user/history', {order, cancelled})
 })
 
 router.route('/order-summary/:id')
@@ -476,7 +499,9 @@ router.route('/order-summary/:id')
             }
         })
     })
-    res.render('user/order_summary', {item, shipping_fee})
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/order_summary', {item, shipping_fee, cancelled})
 })
 .post(upload.single('image'), async(req, res) => {
     const id = req.params.id;
@@ -554,26 +579,36 @@ router.route('/order-summary/:id')
 })
 
 router.route('/about')
-.get((req, res) => {
-    res.render('user/about')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/about', {cancelled})
 })
 
 // / user/faqs1
 router.route('/faqs1')
-.get((req, res) => {
-    res.render('user/faqs/faqs1')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/faqs/faqs1', {cancelled})
 })
 router.route('/faqs2')
-.get((req, res) => {
-    res.render('user/faqs/faqs2')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/faqs/faqs2', {cancelled})
 })
 router.route('/faqs3')
-.get((req, res) => {
-    res.render('user/faqs/faqs3')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/faqs/faqs3', {cancelled})
 })
 router.route('/faqs4')
-.get((req, res) => {
-    res.render('user/faqs/faqs4')
+.get(async(req, res) => {
+    const user_id = res.locals.user.id;
+    const cancelled = await Cancelled.findOne({user_id}).count();
+    res.render('user/faqs/faqs4', {cancelled})
 })
 
 module.exports = router;
