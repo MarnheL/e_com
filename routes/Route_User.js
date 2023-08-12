@@ -455,7 +455,7 @@ router.route('/order/:id')
     const id = req.params.id
     const reason = req.body.reason
     await Order.findByIdAndUpdate(id, {status: 'cancelled', reason}, {new: true})
-    res.redirect('/user/order')
+    res.redirect('/user/history')
 })
 
 router.route('/history')

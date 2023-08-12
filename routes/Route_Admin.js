@@ -535,7 +535,7 @@ router.route('/sales-report')
         if(req.query.start == undefined && req.query.end == undefined){
             sales = await Sales.find().sort('-createdAt')
         }else{
-            sales = await Sales.find({createdAt: {$gte: start.toDate(), $lte: end.toDate()}, reason: option})
+            sales = await Sales.find({createdAt: {$gte: start.toDate(), $lte: end.toDate()}, reason: option}).sort('createdAt')
         }
         let total_sales = 0
         if(sales){
