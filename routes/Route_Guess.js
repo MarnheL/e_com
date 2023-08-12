@@ -224,7 +224,6 @@ router.route('/cart/place-order')
     const result = await cloudinary.uploader.upload(req.file.path)
     const payment_method = req.body.payment_method;
     const cart = await ShoppingCart.findOneAndDelete({user_id: id}).populate('items')
-    console.log(cart.items)
     let sub_total = 0
     let shipping_fee = 0;
 
