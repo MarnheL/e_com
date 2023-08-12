@@ -6,8 +6,7 @@ const cancelledOrderSchema = new mongoose.Schema({
         ref: 'Order'
     },
     user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Account'
+        type: String,
     },
     reason: {
         type: String,

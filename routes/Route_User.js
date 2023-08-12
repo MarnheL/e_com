@@ -174,15 +174,27 @@ router.route('/cart')
         const product = await Product.find()
         const cart = await ShoppingCart.findOne({user_id})
         let shipping_fee = 0;
-        let city = shippingFees.find(p => p.city == res.locals.user.city)
-        // console.log(city)
-        if(city){
-            let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
-            if(barangay){
-                shipping_fee = barangay.fee
-            }
-        }
-        // console.log(product)
+        // let city = shippingFees.find(p => p.city == res.locals.user.city)
+        // if(city){
+        //     let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
+        //     if(barangay){
+        //         shipping_fee = barangay.fee
+        //     }
+        // }
+
+        const shippingFee = await ShippingFee.find()
+        shippingFee.forEach(cities => {
+            cities.shippingFees.forEach(city => {
+                if(city.city == res.locals.user.city){
+                    city.barangays.forEach(barangay => {
+                        if(barangay.name == res.locals.user.barangay){
+                            shipping_fee = barangay.fee
+                        }
+                    })
+                }
+            })
+        })
+
         let newcart = [];
         if(cart != null){
             cart.items.forEach((item) => {
@@ -284,17 +296,22 @@ router.route('/cart/place-order')
     const id = res.locals.user.id;
     const payment_method = req.body.payment_method;
     const cart = await ShoppingCart.findOneAndDelete({user_id: id}).populate('items')
-    console.log(cart.items, 1)
     let sub_total = 0
     let shipping_fee = 0;
-    let city = shippingFees.find(p => p.city == res.locals.user.city)
-    if(city){
-        let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
-        if(barangay){
-            console.log(barangay.fee)
-            shipping_fee = barangay.fee
-        }
-    }
+
+    const shippingFee = await ShippingFee.find()
+    shippingFee.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            if(city.city == res.locals.user.city){
+                city.barangays.forEach(barangay => {
+                    if(barangay.name == res.locals.user.barangay){
+                        shipping_fee = barangay.fee
+                    }
+                })
+            }
+        })
+    })
+
     cart.items.forEach(data => {
         sub_total = sub_total + data.product_price
     })
@@ -505,15 +522,19 @@ router.route('/order-summary/:id')
     const user_id = res.locals.user.id
     const product = await Product.findById(id)
     let shipping_fee = 0;
-    let city = shippingFees.find(p => p.city == res.locals.user.city)
-    if(city){
-        let barangay = city.barangays.find(p => p.name == res.locals.user.barangay)
-        if(barangay){
-            console.log(barangay.fee)
-            shipping_fee = barangay.fee
-        }
-    }
-    console.log(req.body.payment_method)
+    const shippingFee = await ShippingFee.find()
+    shippingFee.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            if(city.city == res.locals.user.city){
+                city.barangays.forEach(barangay => {
+                    if(barangay.name == res.locals.user.barangay){
+                        shipping_fee = barangay.fee
+                    }
+                })
+            }
+        })
+    })
+
     if(req.body.payment_method == 'COD'){
         let sub_total = product.product_price * req.body.quantity
         let total_amount = sub_total + shipping_fee

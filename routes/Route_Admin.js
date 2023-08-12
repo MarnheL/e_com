@@ -384,36 +384,30 @@ router.route('/order-status/:id/ongoing')
     const shippingFee = await ShippingFee.find()
     console.log(order)
     let shipping_fee = 0;
-        // let city = shippingFees.find(p => p.city == order.city)
-        // if(city){
-        //     let barangay = city.barangays.find(p => p.name == order.barangay)
-        //     if(barangay){
-        //         shipping_fee = barangay.fee
-        //     }
-        // }
-        shippingFee.forEach(cities => {
-            cities.shippingFees.forEach(city => {
-                if(city.city == order.city){
-                    city.barangays.forEach(barangay => {
-                        if(barangay.name == order.barangay){
-                            shipping_fee = barangay.fee
-                        }
-                    })
-                }
-            })
+    shippingFee.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            if(city.city == order.city){
+                city.barangays.forEach(barangay => {
+                    if(barangay.name == order.barangay){
+                        shipping_fee = barangay.fee
+                    }
+                })
+            }
         })
+    })
     let product_price = 0
     let item = []
     order.items.forEach(async (data) => {
-        product_price += data.price
+        product_price += (data.price * data.quantity)
         item.push({
-            product_id: data.id,
+            product_id: data.product_id,
             product_name: data.name,
             product_quantity: data.quantity,
-            product_price: data.price,
+            product_price: data.price * data.quantity,
             // product_image: data.product_image,
         })
     })
+    console.log(product_price)
     const sales = await Sales({
         items: item,
         sub_total: product_price,

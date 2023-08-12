@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs')
 
 const shippingFees = require('../middleware/ship')
+const ShippingFee = require('../models/Ship')
 
 const cloudinary = require('../controller/imageUploader');
 
@@ -119,15 +120,26 @@ router.route('/cart')
         const cart = await ShoppingCart.findOne({user_id: id})
         // console.log(cart.items)
         let shipping_fee = 0;
-        let city = shippingFees.find(p => p.city == res.locals.guess.city)
-        // console.log(city)
-        if(city){
-            let barangay = city.barangays.find(p => p.name == res.locals.guess.barangay)
-            if(barangay){
-                shipping_fee = barangay.fee
-            }
-        }
-        // console.log(product)
+        // let city = shippingFees.find(p => p.city == res.locals.guess.city)
+        // if(city){
+        //     let barangay = city.barangays.find(p => p.name == res.locals.guess.barangay)
+        //     if(barangay){
+        //         shipping_fee = barangay.fee
+        //     }
+        // }
+        const shippingFee = await ShippingFee.find()
+        shippingFee.forEach(cities => {
+            cities.shippingFees.forEach(city => {
+                if(city.city == res.locals.guess.city){
+                    city.barangays.forEach(barangay => {
+                        if(barangay.name == res.locals.guess.barangay){
+                            shipping_fee = barangay.fee
+                        }
+                    })
+                }
+            })
+        })
+
         let newcart = [];
         if(cart != null){
             cart.items.forEach((item) => {
@@ -223,20 +235,27 @@ router.route('/cart/place-order')
     const id = res.locals.guess.user_id;
     const result = await cloudinary.uploader.upload(req.file.path)
     const payment_method = req.body.payment_method;
-    const cart = await ShoppingCart.findOneAndDelete({user_id: id}).populate('items')
+    const cart = await ShoppingCart.findOneAndRemove({user_id: id}).populate('items')
+    console.log(cart);
     let sub_total = 0
     let shipping_fee = 0;
 
-    let city = shippingFees.find(p => p.city == res.locals.guess.city)
-    if(city){
-        let barangay = city.barangays.find(p => p.name == res.locals.guess.barangay)
-        if(barangay){
-            console.log(barangay.fee)
-            shipping_fee = barangay.fee
-        }
-    }
+    const shippingFee = await ShippingFee.find()
+    shippingFee.forEach(cities => {
+        cities.shippingFees.forEach(city => {
+            if(city.city == res.locals.guess.city){
+                city.barangays.forEach(barangay => {
+                    if(barangay.name == res.locals.guess.barangay){
+                        shipping_fee = barangay.fee
+                    }
+                })
+            }
+        })
+    })
+
     cart.items.forEach(data => {
-        sub_total = sub_total + data.product_price
+        console.log(data)
+        sub_total += (data.product_price * data.product_quantity);
     })
     const product = cart.items.map(item => ({
         product_id: item.product_id,
@@ -259,10 +278,6 @@ router.route('/cart/place-order')
         contact_number: res.locals.guess.contact_number,
         payment_method: payment_method,
         img_name: result.secure_url,
-        // image: {
-        //     data: fs.readFileSync('uploads/' + req.file.filename),
-        //     contentType: 'image/png'
-        // }
     })
     order.save()
     .then(() => {
@@ -357,18 +372,19 @@ router.route('/order-summary/:id/confirm')
 router.route('/order-summary/:id')
 .get(async(req, res) => {
     const id = req.params.id;
-    console.log(req.params.id)
     const item = await Product.findById(id)
     const {firstname, middlename, lastname, contact_number, house_no, zip_code, barangay, city, province} = req.query
     let shipping_fee = 0;
-    let shipcity = shippingFees.find(p => p.city == city)
-    if(shipcity){
-        let shipbarangay = shipcity.barangays.find(p => p.name == barangay)
-        if(shipbarangay){
-            console.log(shipbarangay.fee)
-            shipping_fee = shipbarangay.fee
+    const shippingFee = await ShippingFee.findOne()
+    shippingFee.shippingFees.forEach(cities => {
+        if(cities.city == city){
+            cities.barangays.forEach(barangays => {
+                if(barangays.name === barangay){
+                    shipping_fee = barangays.fee
+                }
+            })
         }
-    }
+    })
     res.render('guess/order_summary', {item, firstname, middlename, lastname, contact_number, house_no, zip_code, barangay, city, province, shipping_fee})
 })
 .post(upload.single('image'), async(req, res) => {
@@ -377,7 +393,7 @@ router.route('/order-summary/:id')
     const product = await Product.findById(id)
     const result = await cloudinary.uploader.upload(req.file.path)
 
-    let shipping_fee = 0
+    let shipping_fee = parseInt(req.body.shipping_fee);
     let sub_total = product.product_price * req.body.quantity
     let total_amount = sub_total + shipping_fee
     const order = await Order({
@@ -422,6 +438,7 @@ router.route('/check-point/:id')
 
 const Pre_Order = require('../models/Pre_Order');
 const { route } = require('./Route_User');
+const { log } = require('console');
 
 router.route('/product/:id/add-to-cart')
 .post(checkGuess, async(req, res) => {
