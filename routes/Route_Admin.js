@@ -558,9 +558,9 @@ router.route('/inventory-report')
             $or: [
                 {reason: {$regex: search}}
             ]
-        })
+        }).sort('-date_remove')
     }else{
-        report = await Remove_Item.find()
+        report = await Remove_Item.find().sort('-date_remove')
     }
     res.render('admin/inventory_report', {report})
 })
